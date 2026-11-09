@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<!--
+編集ガイド：このファイル単体で動作します。index.html と donation.html は同じフォルダーに置いてください。
+冒頭の site-config（JSON）を編集します。文字列は二重引用符で囲み、末尾の余分なカンマは付けません。
+performanceUrl：公演申込の正式なHTTPS URL。photoFormUrl：写真応募の正式なHTTPS URL。空欄は準備中案内になります。
+photos の各キーは data-photo と対応。src：PC画像、mobileSrc：スマホ画像（任意）、alt：写真の説明。
+画像は images/main.jpg のような相対パス、またはHTTPS URLで指定。position と mobilePosition は例：50% 35%。
+bank は銀行名 bank・支店 branch・種別 type・番号 number・名義 holder の5項目を正式情報で入力します。
+5項目すべてが設定されるまでコピーは無効。銀行情報は donation.html を編集してください。
+donationDetails：usage（使途）、receipt（領収書）、afterTransfer（振込後の連絡）、corporate（企業・団体）、fees（手数料）。
+公開前に：申込URLと受付期間、写真の掲載許諾と代替テキスト、口座全項目、使途とFAQ回答、主催・協力・助成表記を確認。
+両HTMLの共通情報はそれぞれ更新してください。未確定の内容を架空の情報で埋めないでください。
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#087FCC">
+<title>寄付・協賛のお願い｜WAKUWAKUフェスタ2027</title>
+<meta name="description" content="WAKUWAKUフェスタへの寄付・協賛のご案内。募集目標30万円。個人のご寄付、企業・団体のご協賛、使い道、銀行振込、よくあるご質問をご紹介します。">
+<!-- 編集用設定：空欄は未設定です。URL・写真・口座情報はここで管理します。 -->
+<script id="site-config" type="application/json">
+{
+  "performanceUrl": "",
+  "photoFormUrl": "",
+  "contactEmail": "wdsd.yokohama@gmail.com",
+  "organizer": "世界ダウン症の日を広めよう in Yokohama 実行委員会",
+  "cooperation": "NPO法人 心魂プロジェクト",
+  "grant": "TOOTH FAIRY支援事業",
+  "endorsement": "",
+  "bank": {
+    "bank": "みずほ銀行",
+    "branch": "鷺沼支店",
+    "type": "普通",
+    "number": "1625219",
+    "holder": "ホリエミサコ"
+  },
+  "donationDetails": {
+    "usage": "",
+    "receipt": "",
+    "afterTransfer": "",
+    "corporate": "",
+    "fees": ""
+  },
+  "photos": {
+    "supportHero": {
+      "src": "images/donation-hero.jpg",
+      "mobileSrc": "",
+      "position": "50% 50%",
+      "mobilePosition": "50% 50%",
+      "alt": "舞台上のパフォーマーとともに、子どもたちが音楽に合わせて踊る様子"
+    },
+    "supportStage": {
+      "src": "",
+      "mobileSrc": "",
+      "position": "50% 50%",
+      "mobilePosition": "50% 50%",
+      "alt": ""
+    },
+    "supportMeet": {
+      "src": "",
+      "mobileSrc": "",
+      "position": "50% 50%",
+      "mobilePosition": "50% 50%",
+      "alt": ""
+    },
+    "supportWorkshop": {
+      "src": "",
+      "mobileSrc": "",
+      "position": "50% 50%",
+      "mobilePosition": "50% 50%",
+      "alt": ""
+    }
+  }
+}
+</script>
+<style>
+:root{--blue:#087FCC;--navy:#10364d;--light:#EAF6FC;--pink:#F15B91;--yellow:#F2BA45;--green:#62BB8A;--cream:#fffcf4;--muted:#526775;--line:#d8e4e9}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:105px}body{margin:0;color:var(--navy);background:var(--cream);font-family:'Yu Gothic','Hiragino Kaku Gothic ProN',Meiryo,sans-serif;font-size:1.125rem;line-height:1.9;letter-spacing:.035em}
+a{color:inherit;text-underline-offset:5px;overflow-wrap:anywhere}button{font:inherit;cursor:pointer}button,a{-webkit-tap-highlight-color:transparent}button,a,summary{touch-action:manipulation}button:disabled{cursor:not-allowed;opacity:.55}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #075a96;outline-offset:5px}
+p{margin:0 0 1em}h1,h2,h3,h4{line-height:1.6;letter-spacing:.035em;margin:0 0 1rem}h2{font-size:clamp(1.75rem,2.6vw,2.375rem);font-weight:800}h3{font-size:1.5rem}h4{font-size:1.3125rem}strong{font-weight:800}img{max-width:100%}
+.wrap{width:min(80rem,calc(100% - 5rem));margin:auto}.narrow{max-width:50rem;margin:auto}.section{padding:4.5rem 0}.white{background:#fff}.tint{background:var(--light)}.cream{background:var(--cream)}.section-head{margin-bottom:1.75rem}.section-head h2{margin:0}.eyebrow{display:block;color:#076daa;font-size:.8125rem;font-weight:800;letter-spacing:.18em;margin-bottom:1rem;overflow-wrap:anywhere}.small{font-size:.9375rem;color:var(--muted);line-height:1.85}
+.skip{position:fixed;top:-100px;left:15px;z-index:100;background:white;padding:12px}.skip:focus{top:10px}.header{position:fixed;inset:0 0 auto;height:86px;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);z-index:30}.header-inner{width:min(90rem,calc(100% - 4rem));height:100%;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}.logo{text-decoration:none;line-height:1.4;white-space:nowrap}.logo small{display:block;font-size:.75rem;letter-spacing:.1em}.logo b{font-size:1.375rem;letter-spacing:-.03em}.logo i{font-style:normal;color:var(--blue)}.logo em{font-style:normal;color:#ac3a65}.logo .year{font-size:.65em;margin-left:5px}.nav{display:flex;align-items:center;gap:1.25rem}.nav a{font-size:.875rem;font-weight:700;text-decoration:none;white-space:nowrap;padding:10px 0}.nav a:hover{color:#066cae}.nav .nav-donate{background:var(--yellow);padding:12px 20px;border-radius:6px}.menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:6px;width:48px;height:46px;padding:10px}.menu-toggle span{display:block;height:2px;background:var(--navy);margin:5px 0;transition:transform .2s}.menu-toggle[aria-expanded=true] span:first-child{transform:translateY(3.5px) rotate(45deg)}.menu-toggle[aria-expanded=true] span:last-child{transform:translateY(-3.5px) rotate(-45deg)}main{padding-top:86px}
+.btn{min-height:3.25rem;max-width:100%;display:inline-flex;align-items:center;justify-content:center;gap:1rem;padding:.875rem 1.5rem;border:0;border-radius:6px;text-decoration:none;font-size:1rem;font-weight:800;line-height:1.6;transition:transform .18s,background .18s}.btn:hover{transform:translateY(-2px)}.btn.blue{background:#076fb5;color:#fff}.btn.yellow{background:var(--yellow);color:var(--navy)}.btn.outline{border:1px solid #b8ccd6;background:#fff;color:var(--navy)}.actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.25rem}
+.donation-hero{padding:4.5rem 0;background:#fff3d8}.two-col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:3rem;align-items:center}.two-col>*{min-width:0}.donation-hero h1{font-size:clamp(2rem,2.8vw,2.75rem);line-height:1.6;font-weight:800;margin-bottom:1.5rem}.donation-hero h1>span{display:block}.phrase{display:inline-block;max-width:100%}.funding-goal{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem 1.25rem;background:#fff;border-left:4px solid var(--yellow);padding:.75rem 1.25rem;margin:1.5rem 0 .625rem;font-size:1rem;font-weight:700}.funding-goal>strong{font-size:3rem;line-height:1.3;letter-spacing:0}.funding-goal>strong>span{font-size:1.5rem}.goal-note{margin-bottom:1.25rem}.hero-support-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;margin-top:1.25rem}.hero-support-actions .btn{width:100%;min-width:0}
+.photo{position:relative;overflow:hidden;aspect-ratio:var(--ratio,4 / 3);background:#e1edf1;margin:0;display:grid;place-items:center;border:1px solid #cfdee4;min-width:0;width:100%}.donation-hero .photo{border-radius:14px;border:0;background:#e4ebe8}.photo-label{padding:1.5rem;text-align:center;color:#486574;line-height:1.8;font-size:1rem;position:relative;z-index:1}.photo-label>span:not(.photo-mark){display:block;font-weight:700}.photo-label small{font-size:.875rem;display:block;margin-top:.5rem}.photo-mark{font-size:2rem;display:block;color:#7195a5;font-weight:300;margin-bottom:.625rem}.photo picture,.photo img{position:absolute;inset:0;width:100%;height:100%;display:block}.photo img{object-fit:cover;object-position:var(--pos,50% 50%)}.photo.has-image .photo-label{display:none}
+#support-options{line-height:1.7}
+#support-options .support-panel{padding:1.75rem;border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:8px;background:#fff}
+#support-options .personal-support{margin-bottom:1.5rem}
+#support-options .corporate-support{border-top-color:var(--yellow)}
+#support-options .audience-label{display:inline-block;padding:.4rem .875rem;margin-bottom:.75rem;border:1px solid #a9d2e8;border-radius:6px;background:#dceff9;color:#12547a;font-size:1.0625rem;font-weight:800;line-height:1.5}
+#support-options .corporate-support>.audience-label{background:#fff0c9;border-color:#efd08a;color:#755417}
+#support-options .support-panel>h3{margin-bottom:.75rem}
+#support-options .support-panel>p{margin-bottom:.75em;line-height:1.7}
+#support-options .sponsorship-courses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:1.25rem;row-gap:0;margin:1.25rem 0 1.5rem}
+#support-options .sponsor-course{--course-color:var(--blue);--course-tint:#eaf6fc;--course-ink:#076daa;display:grid;grid-template-rows:subgrid;grid-row:span 5;row-gap:0;padding:1.375rem;background:#fff;border:1px solid var(--line);border-top:6px solid var(--course-color);border-radius:8px;overflow:hidden;font-size:1rem;line-height:1.65;min-width:0}
+#support-options .course-heading{display:grid;grid-template-rows:subgrid;grid-row:span 2;margin:-1.375rem -1.375rem .875rem;padding:1rem 1.375rem .875rem;background:var(--course-tint)}
+#support-options .sponsor-course:nth-child(2){--course-color:var(--pink);--course-tint:#fff0f6;--course-ink:#9d315a}
+#support-options .sponsor-course:nth-child(3){--course-color:var(--green);--course-tint:#edf8f1;--course-ink:#236445}
+#support-options .sponsor-course .course-label{display:inline-flex;align-items:center;width:max-content;max-width:100%;padding:.125rem .625rem;font-size:1rem;font-weight:800;line-height:1.5;color:var(--course-ink);background:#ffffffd9;border:1px solid #fff;border-radius:999px;margin:0 0 .5rem}
+#support-options .sponsor-course h4{font-size:1.3125rem;margin:0;line-height:1.65}
+#support-options .sponsor-course .course-price{font-size:2rem;font-weight:800;line-height:1.4;letter-spacing:0;margin:0 0 .75rem}
+#support-options .course-price>span{font-size:1rem}
+#support-options .sponsor-course>p:not([class]){margin:0;line-height:1.65}
+#support-options .course-benefit{padding-top:.75rem;border-top:1px solid var(--line);margin:.875rem 0 0;font-size:.9375rem;line-height:1.65}
+#support-options .course-benefit b{display:block;margin-bottom:.25rem}
+#support-options .sponsorship-contact{padding-top:1.25rem;border-top:1px solid var(--line)}
+#support-options .sponsorship-contact h4{margin-bottom:.625rem}
+#support-options .sponsorship-contact p{margin-bottom:.5em;line-height:1.7}
+#support-options .sponsorship-contact p:last-child{margin-bottom:0}
+#support-options .contact-mail{display:inline-flex;align-items:center;min-height:44px;font-weight:700;max-width:100%;overflow-wrap:anywhere}
+
+#support-impact .impact-phrase{display:inline-block;max-width:100%}
+#support-impact .impact-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem;margin:1.5rem 0}
+#support-impact .impact-cards article{padding:1.25rem;background:#fff;border:1px solid #dce9ef;border-top:3px solid var(--blue);border-radius:6px;line-height:1.7;min-width:0}
+#support-impact .impact-cards article:nth-child(2){border-top-color:var(--pink)}
+#support-impact .impact-cards article:nth-child(3){border-top-color:var(--green)}
+#support-impact .impact-cards h3{font-size:1.375rem;margin-bottom:.5rem}
+#support-impact .impact-cards p{font-size:1.0625rem;line-height:1.7;margin:0}
+#support-impact .support-usage{max-width:62rem;margin-top:1.5rem;padding-top:1rem;border-top:1px solid #c6dce6;font-size:.9375rem;line-height:1.75;color:#405a69}
+#support-impact .support-usage h3{font-size:1.0625rem;margin-bottom:.625rem}
+#support-impact .support-usage p{margin-bottom:.625em}
+#support-impact .support-usage p:last-child{margin:0}
+#bank .bank-wrap{max-width:52rem}
+#bank .bank-wrap>p{font-size:1.0625rem;margin:0 0 .5rem}
+#bank .bank-wrap>p:last-of-type{margin-bottom:1.125rem}
+#bank .bank-box{padding:1.5rem;background:#fff;border:1px solid var(--line);border-radius:8px}
+#bank [hidden]{display:none}
+#bank .bank-transfer{display:block}
+#bank .bank-lines{min-width:0;letter-spacing:.01em}
+#bank .bank-number-row{display:flex;flex-wrap:wrap;align-items:center;gap:.375rem 1rem}
+#bank .bank-lines p{margin:0;font-size:1rem;font-weight:600;line-height:1.7;white-space:nowrap}
+#bank .bank-lines>:not(:first-child){margin-top:.375rem}
+#bank .copy{display:inline-flex;align-items:center;justify-content:center;gap:.25rem;border:1px solid #c7d7e1;border-radius:6px;background:#f4f9fb;padding:.5rem .25rem;font-size:.875rem;letter-spacing:0;line-height:1.5;min-height:44px;min-width:44px}
+#bank .copy svg{width:.875rem;height:.875rem;flex-shrink:0}
+#bank .bank-notice{background:#fff4d8;border-left:3px solid var(--yellow);padding:.875rem 1rem;font-size:1rem;margin:0}
+#bank .bank-notes{margin-top:1rem;padding-top:.875rem;border-top:1px solid var(--line);font-size:.9375rem;line-height:1.75;color:var(--muted)}
+#bank .bank-notes p{margin:0}
+#bank .bank-notes p:first-child{text-wrap:pretty}
+#bank .bank-notes p+p{margin-top:.375rem}
+#donation-faq .section-head{text-align:center;max-width:60rem;margin-inline:auto}
+#donation-faq .faq{text-align:left}
+.faq{max-width:60rem;margin:auto}details{border-bottom:1px solid #cddde5}summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:1rem;font-size:1.125rem;font-weight:700;padding:1.375rem 0;line-height:1.8}summary::-webkit-details-marker{display:none}.q{color:#076cae;font-size:1.375rem;flex-shrink:0}.plus{margin-left:auto;flex-shrink:0;font-size:1.4375rem;font-weight:400}details[open] .plus{transform:rotate(45deg)}.answer{padding:0 2.125rem 1.5rem;color:#405a69;font-size:1.0625rem;line-height:1.9}.donation-closing{background:var(--light);text-align:center;padding:2.5rem 0}.donation-closing h2{font-size:clamp(1.75rem,2.4vw,2.25rem);line-height:1.65;text-wrap:balance;word-break:keep-all;letter-spacing:.015em;margin-bottom:.75rem}.donation-closing p{margin:0 auto 1rem;line-height:1.75;text-wrap:pretty}
+.footer{padding:3rem 0;background:var(--navy);color:#fff}.footer-top{display:flex;justify-content:space-between;gap:2rem}.footer .logo i,.footer .logo em{color:white}.footer p{font-size:.9375rem}.footer a{overflow-wrap:anywhere}.copyright{border-top:1px solid #426071;padding-top:1.25rem;margin-top:2rem;font-size:.875rem;opacity:.8}.status{position:fixed;bottom:calc(1.25rem + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);max-width:calc(100% - 32px);width:max-content;background:#10364d;color:#fff;padding:.875rem 1.25rem;border-radius:8px;z-index:80;font-size:1rem;box-shadow:0 5px 25px #10364d30}.status:empty{display:none}
+@media(max-width:1279px){.menu-toggle{display:block;flex-shrink:0}.nav{display:none;position:absolute;top:86px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:1rem 2rem;align-items:stretch}.nav.open{display:flex;flex-direction:column;gap:.25rem}.nav a{font-size:1rem;padding:.75rem}.nav .nav-donate{text-align:center}}
+@media(max-width:1000px){.two-col{grid-template-columns:1fr;gap:2rem}.donation-hero .photo{max-width:36rem;justify-self:center}#support-impact .impact-cards{grid-template-columns:1fr}#support-options .sponsorship-courses{grid-template-columns:1fr;gap:1rem}#support-options .sponsor-course{grid-template-rows:auto;grid-row:auto;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:1.5rem}#support-options .course-heading{display:block;grid-column:1 / -1;grid-row:1}#support-options .sponsor-course .course-price{grid-column:1;grid-row:2}#support-options .sponsor-course>p:not([class]){grid-column:1;grid-row:3}#support-options .sponsor-course .course-benefit{grid-column:2;grid-row:2 / span 2;margin-top:0;align-self:start}}
+@media(max-width:700px){html{scroll-padding-top:92px}body{font-size:1.0625rem}.wrap{width:calc(100% - 40px)}.header-inner{width:calc(100% - 32px)}.logo b{font-size:1.1875rem}.logo small{font-size:.6875rem}.section{padding:3.5rem 0}.section-head{margin-bottom:1.5rem}.eyebrow{font-size:.75rem;letter-spacing:.13em}h2{font-size:1.75rem}h3{font-size:1.3125rem}.small{font-size:.875rem}.donation-hero{padding:2.625rem 0}.donation-hero h1{font-size:1.75rem}.donation-hero .photo{aspect-ratio:4 / 3}.hero-support-actions .btn{flex-direction:column;gap:.125rem;padding:.75rem .375rem;min-height:4.25rem;letter-spacing:0}.funding-goal{padding:.75rem 1rem;gap:.5rem 1rem}.funding-goal>strong{font-size:2.625rem}.funding-goal>strong>span{font-size:1.375rem}.photo-label{padding:1rem;font-size:.9375rem}.photo-label small{font-size:.8125rem}.photo img{object-position:var(--mobile-pos,50% 50%)}#support-options .support-panel{padding:1.25rem}#support-options .sponsorship-courses{gap:1rem;margin:1rem 0 1.25rem}#support-options .sponsor-course{display:block;padding:1.25rem}#support-options .course-heading{margin:-1.25rem -1.25rem .875rem;padding:1rem 1.25rem}#support-options .sponsor-course h4{font-size:1.25rem}#support-options .sponsor-course .course-price{font-size:1.875rem}#support-options .sponsor-course .course-benefit{margin-top:.75rem}#support-options .sponsorship-contact{padding-top:1rem}#support-options .sponsorship-contact h4{font-size:1.25rem}#support-impact .impact-cards article{padding:1.25rem}#support-impact .impact-cards h3{font-size:1.25rem}#support-impact .impact-cards p{font-size:1rem}#support-impact .support-usage{font-size:.875rem}#support-impact .support-usage h3{font-size:1rem}#bank .bank-wrap>p{font-size:1rem}#bank .bank-box{padding:1rem}#bank .bank-notes{font-size:.875rem}#bank .bank-notice{padding:.75rem}.btn{font-size:1rem;gap:.5rem}summary{font-size:1.0625rem;gap:.75rem}.answer{font-size:1rem;padding:0 0 1.25rem 2rem}.donation-closing{padding:2.25rem 0}.donation-closing h2{font-size:1.625rem}.footer{padding:2.625rem 0 calc(2.625rem + env(safe-area-inset-bottom))}.footer-top{display:block}.footer-top>div+div{margin-top:1.75rem}.footer p,.copyright{font-size:.875rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.menu-toggle span{transition:none}}
+
+@media(max-width:360px){#bank .bank-number-row .copy{margin-left:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="header">
+<div class="header-inner">
+<a class="logo" href="index.html" aria-label="WAKUWAKUフェスタ2027 トップ">
+<small>世界ダウン症の日</small>
+<b>
+<i>WAKU</i><em>WAKU</em>フェスタ<span class="year">2027</span>
+</b>
+</a>
+<button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="main-nav">
+<span>
+</span>
+<span>
+</span>
+</button>
+<nav class="nav" id="main-nav" aria-label="メインナビゲーション">
+<a href="index.html#about">イベントについて</a>
+<a href="index.html#program">プログラム</a>
+<a href="index.html#photos">写真・みんなの夢</a>
+<a href="index.html#story">開催への想い</a>
+<a href="index.html#access">開催概要・アクセス</a>
+<a class="nav-donate" href="donation.html">寄付で応援する ↗</a>
+</nav>
+</div>
+</header>
+<main id="main">
+<section class="donation-hero" id="mission">
+<div class="wrap two-col">
+<div>
+<span class="eyebrow">SUPPORT OUR MISSION</span>
+<h1><span>子どもたちが、</span><span><span class="phrase">自分らしい未来を</span><wbr><span class="phrase">つくる。</span></span><span><span class="phrase">その一歩を、</span><wbr><span class="phrase">一緒に。</span></span></h1>
+<p>WAKUWAKUフェスタは、ダウン症のある子どもたちの「好き」や「やってみたい」を広げる、参加無料のイベントです。</p>
+<p>一人ひとりの可能性につながる体験を届けるために、皆さまのご支援をお願いいたします。</p>
+<div class="funding-goal"><span>寄付・協賛 募集目標</span><strong>30<span>万円</span></strong></div>
+<p class="small goal-note">※目標額に達した場合は、受付を終了することがあります。</p>
+<div class="hero-support-actions">
+<a class="btn blue" href="#personal-support"><span>個人の方</span><span aria-hidden="true">↓</span></a>
+<a class="btn yellow" href="#corporate-support"><span>企業・団体の方</span><span aria-hidden="true">↓</span></a>
+</div>
+</div>
+<figure class="photo " data-photo="supportHero" style="--ratio:5602 / 3740">
+<div class="photo-label">
+<span class="photo-mark" aria-hidden="true">＋</span>
+<span>寄付ページのメインビジュアル</span>
+<small>推奨 3:2 ／ 舞台上のパフォーマーと子どもたちが踊る風景</small>
+</div>
+</figure>
+</div>
+</section>
+<section class="section white" id="support-options">
+<div class="wrap">
+<div class="section-head"><h2>あなたに合った応援のかたち</h2></div>
+<article class="personal-support support-panel" id="personal-support">
+<span class="audience-label">個人の方</span>
+<h3>ご寄付のお願い</h3>
+<p>少額からでも応援していただけます。下記口座へお振り込みください。</p>
+<p>振込後のご連絡は不要ですが、よろしければメールでお名前や応援メッセージなどをお寄せください。</p>
+<p>領収書は、3,000円以上のご寄付で、ご希望の方に発行いたします。必要な方はメールにてご連絡ください。</p>
+<p class="small">※当実行委員会へのご寄付は、寄付金控除の対象にはなりません。</p>
+<a class="btn blue" href="#bank">振込先を見る <span aria-hidden="true">↓</span></a>
+</article>
+<article class="corporate-support support-panel" id="corporate-support">
+<span class="audience-label">企業・団体の方</span>
+<h3>ご協賛のお願い</h3>
+<p>協賛パートナーとして、子どもたちの体験を応援していただけませんか。</p>
+<p>ご協賛いただいた企業・団体のロゴを、イベントサイトのスポンサー枠と当日の会場に掲載します。</p>
+<div class="sponsorship-courses">
+<article class="sponsor-course">
+<div class="course-heading"><p class="course-label">コース①</p><h4>WAKUWAKUサポーター</h4></div>
+<p class="course-price"><span>1口 </span>10,000円</p>
+<p>イベントの開催を支える協賛コース。</p>
+<p class="course-benefit"><b>特典</b>イベントサイトと当日会場へのロゴ掲載</p>
+</article>
+<article class="sponsor-course">
+<div class="course-heading"><p class="course-label">コース②</p><h4>WAKUWAKUパートナー</h4></div>
+<p class="course-price">30,000円</p>
+<p>子どもたちの多彩な体験を支える協賛コース。</p>
+<p class="course-benefit"><b>特典</b>イベントサイトと当日会場へのロゴ掲載（基本コースより大きく掲載）</p>
+</article>
+<article class="sponsor-course">
+<div class="course-heading"><p class="course-label">コース③</p><h4>心魂プロジェクト公演<br>応援パートナー</h4></div>
+<p class="course-price">100,000円</p>
+<p>子どもたちに本格的な舞台芸術を届ける取り組みを支える、特別な協賛コース。</p>
+<p class="course-benefit"><b>特典</b>イベントサイトと当日会場へのロゴ掲載（大きく掲載）、公演応援パートナーとしてのご紹介</p>
+</article>
+</div>
+<div class="sponsorship-contact">
+<h4>ご協賛のお申し込みについて</h4>
+<p>ご協賛をご希望の方は、お振り込み前にメールでご連絡ください。協賛コース、請求書・領収書の発行、ロゴ掲載のご希望について確認いたします。</p>
+<p class="small">※ロゴ掲載をご希望の場合は、別途ロゴデータをご提供いただきます。</p>
+<p><a class="contact-mail" data-email data-subject="WAKUWAKUフェスタ2027 協賛について" href="mailto:wdsd.yokohama@gmail.com?subject=WAKUWAKU%E3%83%95%E3%82%A7%E3%82%B9%E3%82%BF2027%20%E5%8D%94%E8%B3%9B%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">wdsd.yokohama@gmail.com</a></p>
+<p class="small">※インボイス（適格請求書）には対応しておりません。</p>
+</div>
+</article>
+</div>
+</section>
+<section class="section tint" id="support-impact">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">WHAT YOUR SUPPORT MAKES POSSIBLE</span><h2>心が動く体験を、<span class="impact-phrase">もっと。</span></h2></div>
+<p>皆さまからの寄付・協賛金は、フェスタを開催するためのさまざまな費用に活用します。</p>
+<div class="impact-cards">
+<article><h3>舞台公演</h3><p>本格的な舞台体験を届けるために。</p></article>
+<article><h3>ワークショップ・交流</h3><p>新しい出会いや体験のために。</p></article>
+<article><h3>写真展示・会場運営</h3><p>参加無料のイベントを<span class="impact-phrase">支えるために。</span></p></article>
+</div>
+<div class="support-usage">
+<h3>ご支援の活用について</h3>
+<p>心魂プロジェクト公演は、同団体が採択を受けたTOOTH FAIRY支援事業による助成金と、実行委員会の負担によって実施します。</p>
+<p>寄付・協賛金は、公演にかかる実行委員会の負担分をはじめ、本イベントの開催・運営費用に活用します。募集目標の30万円を上回るご支援をいただいた場合も、ボランティア等への謝礼を含め、本イベントのために大切に活用します。</p>
+</div>
+</div>
+</section>
+<section class="section cream" id="bank">
+<div class="wrap bank-wrap">
+<div class="section-head"><span class="eyebrow">HOW TO SUPPORT</span><h2>銀行振込のご案内</h2></div>
+<p>個人の方は、以下の口座へ直接お振り込みください。</p>
+<p>企業・団体の方は、事前にメールでご連絡のうえ、お振り込みをお願いいたします。</p>
+<div class="bank-box">
+<p class="bank-notice" data-bank-pending>口座情報は現在確認中です。すべての口座情報が整い次第、ご案内します。</p>
+<div class="bank-transfer" data-bank-complete hidden>
+<div class="bank-lines" aria-label="銀行振込先">
+<p data-bank-line="0"></p>
+<div class="bank-number-row">
+<p data-bank-line="1"></p>
+<button class="copy" type="button" data-copy="number" disabled aria-label="口座番号をコピー"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4H4v12h4"/></svg><span>口座番号コピー</span></button>
+</div>
+<p data-bank-line="2"></p>
+</div>
+</div>
+<div class="bank-notes" data-bank-complete hidden>
+<p>※本口座は、世界ダウン症の日を広めよう in Yokohama 実行委員会メンバーの堀江美佐子名義です。</p>
+<p>※振込手数料はご負担をお願いいたします。</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section white" id="donation-faq">
+<div class="wrap">
+<div class="section-head"><span class="eyebrow">DONATION FAQ</span><h2>よくあるご質問</h2></div>
+<div class="faq">
+<details><summary><span class="q">Q.</span><span>個人の寄付金額に決まりはありますか？</span><span class="plus" aria-hidden="true">＋</span></summary><div class="answer">金額に決まりはありません。少額からでも応援していただけます。</div></details>
+<details><summary><span class="q">Q.</span><span>領収書は発行されますか？</span><span class="plus" aria-hidden="true">＋</span></summary><div class="answer">個人の方には、3,000円以上のご寄付で、ご希望に応じて発行いたします。企業・団体の方は、協賛のお申し込み時にご希望をお知らせください。</div></details>
+<details><summary><span class="q">Q.</span><span>振込前・振込後に連絡は必要ですか？</span><span class="plus" aria-hidden="true">＋</span></summary><div class="answer">個人の方は原則不要です。よろしければ、お名前や応援メッセージをメールでお寄せください。企業・団体の方は、お振り込み前にご連絡をお願いいたします。</div></details>
+<details><summary><span class="q">Q.</span><span>ロゴ掲載を希望する場合は、どうすればよいですか？</span><span class="plus" aria-hidden="true">＋</span></summary><div class="answer">ロゴ掲載をご希望の場合は、メールでご案内します。掲載はご希望の企業・団体のみとし、ロゴデータをご提供いただきます。</div></details>
+<details><summary><span class="q">Q.</span><span>寄付金控除の対象になりますか？</span><span class="plus" aria-hidden="true">＋</span></summary><div class="answer">当実行委員会へのご寄付は、寄付金控除の対象にはなりません。</div></details>
+</div>
+</div>
+</section>
+<div class="donation-closing">
+<div class="wrap narrow">
+<h2>子どもたちの<wbr>「好き」や<wbr>「やってみたい」が、<wbr>未来に<wbr>つながっていく。</h2>
+<p>あたたかいご支援を、どうぞよろしくお願いいたします。</p>
+<a class="btn outline" href="index.html">イベントページへ戻る <span aria-hidden="true">↗</span></a>
+</div>
+</div>
+</main>
+<footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<a class="logo" href="index.html">
+<small>世界ダウン症の日</small>
+<b>
+<i>WAKU</i><em>WAKU</em>フェスタ<span class="year">2027</span>
+</b>
+</a>
+<p style="margin-top:22px" data-setting="organizer">
+</p>
+</div>
+<div>
+<p>お問い合わせ<br>
+<a data-email href="mailto:wdsd.yokohama@gmail.com">wdsd.yokohama@gmail.com</a>
+</p>
+<a href="donation.html" class="small" style="color:white">寄付で応援する ↗</a>
+</div>
+</div>
+<div class="copyright">© 2027 WAKUWAKU FESTA.　世界ダウン症の日を広めよう in Yokohama 実行委員会</div>
+</div>
+</footer>
+<div class="status" role="status" aria-live="polite" aria-atomic="true"></div>
+<script>
+const settings=JSON.parse(document.getElementById('site-config').textContent);
+function isWebUrl(value){try{return ['http:','https:'].includes(new URL(value).protocol)}catch{return false}}
+const status=document.querySelector('.status');let statusTimer;
+function announce(text){status.textContent=text;clearTimeout(statusTimer);statusTimer=setTimeout(()=>status.textContent='',6500)}
+document.querySelectorAll('[data-setting]').forEach(el=>el.textContent=settings[el.dataset.setting]||'');
+document.querySelectorAll('[data-email]').forEach(el=>{el.href='mailto:'+settings.contactEmail+(el.dataset.subject?'?subject='+encodeURIComponent(el.dataset.subject):'');if(el.textContent.includes('@'))el.textContent=settings.contactEmail});
+// URLはHTTP(S)のみ許可。未設定時はページを離れず状況を案内します。
+document.querySelectorAll('[data-form]').forEach(el=>{const url=settings[el.dataset.form==='performance'?'performanceUrl':'photoFormUrl'];const valid=isWebUrl(url);el.addEventListener('click',()=>{if(valid){window.location.assign(url)}else{announce(el.dataset.form==='performance'?'公演申込は準備中です。申込開始は2027年1月1日（金）を予定しています。':'写真・メッセージの応募フォームは準備中です。お問い合わせはページ下部のメールへお願いします。')}})});
+if(isWebUrl(settings.performanceUrl)){const note=document.getElementById('form-notice');if(note)note.textContent='午後の公演は事前申込制・定員150名です。'}
+if(isWebUrl(settings.photoFormUrl)){const note=document.getElementById('photo-notice');if(note)note.textContent='写真2枚とメッセージをご用意ください。'}
+// 写真が読み込めない場合も、用途が分かるプレースホルダーを維持します。
+document.querySelectorAll('[data-photo]').forEach(el=>{const p=settings.photos[el.dataset.photo];if(!p||(!p.src&&!p.mobileSrc))return;const picture=document.createElement('picture');if(p.mobileSrc){const source=document.createElement('source');source.media='(max-width:700px)';source.srcset=p.mobileSrc;picture.append(source)}const img=document.createElement('img');img.alt=p.alt||el.querySelector('.photo-label small').textContent.split('／').slice(1).join('／').trim();img.loading=el.dataset.photo.toLowerCase().includes('hero')?'eager':'lazy';img.decoding='async';img.addEventListener('load',()=>el.classList.add('has-image'));img.addEventListener('error',()=>el.classList.remove('has-image'));img.src=p.src||p.mobileSrc;el.style.setProperty('--pos',p.position||'50% 50%');el.style.setProperty('--mobile-pos',p.mobilePosition||p.position||'50% 50%');picture.append(img);el.append(picture)});
+const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav');
+function closeMenu(restore=false){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','メニューを開く');if(restore)toggle.focus()}
+toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'メニューを閉じる':'メニューを開く')});
+nav.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu()});document.addEventListener('click',e=>{if(!e.target.closest('.header'))closeMenu()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('open'))closeMenu(true)});document.querySelector('.header').addEventListener('focusout',()=>setTimeout(()=>{if(!document.activeElement.closest('.header'))closeMenu()},0));window.matchMedia('(min-width:1280px)').addEventListener('change',()=>closeMenu());
+// 銀行情報は全項目が設定されるまで、すべてのコピー操作を無効にします。
+const bankLabels={bank:'銀行名',branch:'支店名',type:'口座種別',number:'口座番号',holder:'口座名義'};const bank=settings.bank||{};const bankReady=Object.keys(bankLabels).every(k=>typeof bank[k]==='string'&&bank[k].trim()&&!/[【】]/.test(bank[k]))&&/^[0-9]+$/.test(bank.number.trim());
+const displayBankType=bankReady?({普通:'普通預金',当座:'当座預金'}[bank.type.trim()]||bank.type.trim()):'';
+const bankLines=bankReady?[bank.bank.trim()+'　'+bank.branch.trim(),displayBankType+'　'+bank.number.trim(),'口座名義　'+bank.holder.trim()]:[];
+async function copyText(text){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text)}else{const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.left='-9999px';document.body.append(area);const focused=document.activeElement;area.select();const success=document.execCommand('copy');area.remove();if(focused)focused.focus();if(!success)throw Error()}announce('コピーしました。')}catch{announce('コピーできませんでした。振込先を選択してコピーしてください。')}}
+document.querySelectorAll('#bank [data-bank-line]').forEach((el,index)=>el.textContent=bankLines[index]||'');
+document.querySelectorAll('#bank [data-bank-complete]').forEach(el=>el.hidden=!bankReady);
+const bankPending=document.querySelector('#bank [data-bank-pending]');if(bankPending)bankPending.hidden=bankReady;
+document.querySelectorAll('#bank [data-copy]').forEach(el=>{el.disabled=!bankReady;el.addEventListener('click',()=>{if(bankReady)copyText(bank.number.trim())})});
+
+document.querySelectorAll('[data-detail]').forEach(el=>{const value=settings.donationDetails[el.dataset.detail];if(value)el.textContent=value});
+</script>
+</body>
+</html>

@@ -1,0 +1,2868 @@
+<!DOCTYPE html>
+<!--
+編集ガイド：このファイル単体で動作します。index.html と donation.html は同じフォルダーに置いてください。
+寄付ページの復旧：donationPagePublished を true にして scripts/prepare-static.mjs を実行し、再デプロイします。
+冒頭の site-config（JSON）を編集します。文字列は二重引用符で囲み、末尾の余分なカンマは付けません。
+performanceUrl：公演申込の正式なHTTPS URL。photoFormUrl：写真応募の正式なHTTPS URL。空欄は準備中案内になります。
+photos の各キーは data-photo と対応。src：PC画像、mobileSrc：スマホ画像（任意）、alt：写真の説明。
+画像は images/main.jpg のような相対パス、またはHTTPS URLで指定。position と mobilePosition は例：50% 35%。
+bank は銀行名 bank・支店 branch・種別 type・番号 number・名義 holder の5項目を正式情報で入力します。
+5項目すべてが設定されるまでコピーは無効。銀行情報は donation.html を編集してください。
+donationDetails：usage（使途）、receipt（領収書）、afterTransfer（振込後の連絡）、corporate（企業・団体）、fees（手数料）。
+公開前に：申込URLと受付期間、写真の掲載許諾と代替テキスト、口座全項目、使途とFAQ回答、主催・協力・助成表記を確認。
+両HTMLの共通情報はそれぞれ更新してください。未確定の内容を架空の情報で埋めないでください。
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#087FCC">
+<title>世界ダウン症の日 WAKUWAKUフェスタ 2027｜私らしく、誇らしく。</title>
+<meta name="description" content="2027年3月21日（日）、横浜ラポールで開催。心魂プロジェクト公演、ワークショップ、写真とみんなの夢。参加無料。ありのままの自分で、心が動く体験を。">
+<!-- 編集用設定：空欄は未設定です。URL・写真・口座情報はここで管理します。 -->
+<script id="site-config" type="application/json">
+{
+  "performanceUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdlmvr2hPzOiazZ27cwRzZE3lJJArtnysUPpkaYKBrT6rN4Ng/viewform?usp=header",
+  "donationPagePublished": true,
+  "photoFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfi2YkscnJkZ4WoAGVC_wBufAV2FzBuOy6IDlq0d5Vxb3tTlA/viewform?usp=dialog",
+  "contactEmail": "wdsd.yokohama@gmail.com",
+  "organizer": "世界ダウン症の日を広めよう in Yokohama 実行委員会",
+  "cooperation": "NPO法人 心魂プロジェクト",
+  "grant": "TOOTH FAIRY支援事業",
+  "endorsement": "",
+  "bank": {
+    "bank": "",
+    "branch": "",
+    "type": "",
+    "number": "",
+    "holder": ""
+  },
+  "donationDetails": {
+    "usage": "",
+    "receipt": "",
+    "afterTransfer": "",
+    "corporate": "",
+    "fees": ""
+  },
+  "photos": {
+    "hero": {
+      "src": "images/hero-fist-bump.jpg",
+      "mobileSrc": "",
+      "position": "48% 50%",
+      "mobilePosition": "50% 50%",
+      "alt": "子どもとパフォーマーが笑顔で拳を合わせ、交流している様子"
+    },
+    "stage": {
+      "src": "images/kokorodama-stage.jpg",
+      "mobileSrc": "",
+      "position": "50% 100%",
+      "mobilePosition": "50% 100%",
+      "alt": "スクリーンに映し出された方位磁針の演出を背景に4人の出演者が立つ心魂プロジェクトの舞台と、客席のシルエット"
+    },
+    "art": {
+      "src": "images/booth-art.jpeg",
+      "mobileSrc": "",
+      "position": "50% 52%",
+      "mobilePosition": "50% 52%",
+      "alt": "緑の葉を背景に、人物と犬の写真を組み合わせた親子コラボのゼンタングル作品"
+    },
+    "bart": {
+      "src": "images/booth-bart.jpeg",
+      "mobileSrc": "",
+      "position": "46% 50%",
+      "mobilePosition": "46% 50%",
+      "alt": "緑豊かな屋外で、手をつないで過ごす家族"
+    },
+    "smile": {
+      "src": "images/booth-smile-new.png",
+      "mobileSrc": "",
+      "position": "50% 54%",
+      "mobilePosition": "50% 54%",
+      "alt": "男の子が女性の頬にキスをしているsmile.amuseの紹介写真"
+    },
+    "surf": {
+      "src": "images/booth-surf.jpg",
+      "mobileSrc": "",
+      "position": "50% 0%",
+      "mobilePosition": "50% 0%",
+      "alt": "海を背景に、SHOと書かれたサーフボードを持つShoくん"
+    },
+    "dream": {
+      "src": "images/booth-dream.jpg",
+      "mobileSrc": "",
+      "position": "50% 50%",
+      "mobilePosition": "50% 50%",
+      "alt": "緑を背景に、並んで笑顔を見せる2人の先輩たち"
+    },
+    "entry1": {
+      "src": "images/photo-entry-performance.jpg",
+      "mobileSrc": "",
+      "position": "46% 50%",
+      "mobilePosition": "46% 50%",
+      "alt": "室内で、白い服の子どもと緑の衣装を着た人が向き合って交流している様子"
+    },
+    "entry2": {
+      "src": "images/photo-entry-exhibition.jpg",
+      "mobileSrc": "",
+      "position": "50% 50%",
+      "mobilePosition": "50% 50%",
+      "alt": "海で腕の浮き具を着けた子どもが、オレンジ色のボードにつかまっている様子"
+    },
+    "story1": {
+      "src": "images/story-stage.jpg",
+      "mobileSrc": "",
+      "position": "50% 50%",
+      "mobilePosition": "50% 50%",
+      "alt": "青と金色の照明の中、客席へ手を差し伸べながら歌う心魂プロジェクトの出演者たち"
+    },
+    "story2": {
+      "src": "images/story-connection.jpg",
+      "mobileSrc": "",
+      "position": "50% 50%",
+      "mobilePosition": "50% 50%",
+      "alt": "参加者と出演者が向き合い、手を取り合って交流する様子"
+    }
+  },
+  "heroEmblem": {
+    "src": "images/yokohama-emblem.png",
+    "alt": "TRISOMY YOKOHAMA 世界ダウン症の日 3.21 記念エンブレム"
+  }
+}
+</script>
+<style>
+/* 既存の配色・写真・装飾・動作を維持する表示ルール */
+:root {
+  --blue: #087FCC;
+  --navy: #10364d;
+  --light: #EAF6FC;
+  --pink: #F15B91;
+  --yellow: #F2BA45;
+  --green: #62BB8A;
+  --cream: #fffcf4;
+  --muted: #526775;
+  --line: #d8e4e9;
+  --width: 1280px;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  color: var(--navy);
+  background: var(--cream);
+  font-family: 'Yu Gothic','Hiragino Kaku Gothic ProN',Meiryo,sans-serif;
+  letter-spacing: .035em;
+}
+button,a {
+  -webkit-tap-highlight-color: transparent;
+}
+a {
+  color: inherit;
+  text-underline-offset: 5px;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: .55;
+}
+button,a,summary {
+  touch-action: manipulation;
+}
+a:focus-visible,button:focus-visible,summary:focus-visible {
+  outline: 3px solid #075a96;
+  outline-offset: 5px;
+}
+p {
+  margin: 0 0 1.05em;
+}
+h1,h2,h3 {
+  letter-spacing: .045em;
+  margin: 0 0 24px;
+}
+h2 {
+  font-weight: 800;
+}
+strong {
+  font-weight: 800;
+}
+img {
+  max-width: 100%;
+}
+.wrap {
+  margin: auto;
+}
+.narrow {
+  margin: auto;
+}
+.white {
+  background: white;
+}
+.tint {
+  background: var(--light);
+}
+.cream {
+  background: var(--cream);
+}
+.pink-tint {
+  background: #fcf2f5;
+}
+.eyebrow {
+  display: block;
+  color: #076daa;
+  font-weight: 800;
+  letter-spacing: .22em;
+  margin-bottom: 20px;
+}
+.section-head h2 {
+  margin-bottom: 0;
+}
+.center {
+  text-align: center;
+}
+.lead {
+  font-weight: 700;
+}
+.small {
+  color: var(--muted);
+}
+.skip {
+  position: fixed;
+  top: -100px;
+  left: 15px;
+  z-index: 100;
+  background: white;
+  padding: 12px;
+}
+.skip:focus {
+  top: 10px;
+}
+.logo {
+  text-decoration: none;
+  white-space: nowrap;
+}
+.logo small {
+  display: block;
+  letter-spacing: .1em;
+}
+.logo b {
+  letter-spacing: -.03em;
+}
+.logo i {
+  font-style: normal;
+  color: var(--blue);
+}
+.logo em {
+  font-style: normal;
+  color: #ac3a65;
+}
+.logo .year {
+  margin-left: 5px;
+}
+.nav a:hover {
+  color: #066cae;
+}
+.menu-toggle span {
+  display: block;
+  height: 2px;
+  background: var(--navy);
+  margin: 5px 0;
+  transition: transform .2s;
+}
+.menu-toggle[aria-expanded=true] span:first-child {
+  transform: translateY(3.5px) rotate(45deg);
+}
+.menu-toggle[aria-expanded=true] span:last-child {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 68px 0 0;
+  background: var(--light);
+}
+.hero-top {
+  align-items: center;
+  padding-bottom: 52px;
+}
+.hero .eyebrow {
+  margin-bottom: 22px;
+}
+.hero h1 {
+  font-weight: 800;
+  letter-spacing: .01em;
+}
+.underline {
+  position: relative;
+  display: inline;
+  background: linear-gradient(transparent 80%,#f8d46c 80%,#f8d46c 95%,transparent 95%);
+}
+.hero-description {
+  margin-bottom: 22px;
+}
+.event-title {
+  font-weight: 800;
+}
+.event-title small {
+  display: block;
+  margin-bottom: 5px;
+}
+.event-title .color-word {
+  letter-spacing: .01em;
+}
+.color-word span:nth-child(4n+1) {
+  color: #087FCC;
+}
+.color-word span:nth-child(4n+2) {
+  color: #b93669;
+}
+.color-word span:nth-child(4n+3) {
+  color: #97600c;
+}
+.color-word span:nth-child(4n) {
+  color: #237247;
+}
+.hero-visual {
+  position: relative;
+  padding: 16px 0 20px;
+}
+.hero-visual:before {
+  content: '';
+  position: absolute;
+  inset: 0 -16px 30px 22px;
+  border: 1px solid #a4c9da;
+  border-radius: 48% 48% 4px 4px;
+  transform: rotate(4deg);
+}
+.hero .photo {
+  aspect-ratio: 16/9;
+  border-radius: 45% 45% 4px 4px;
+  background: #d9eaf0;
+  min-height: 300px;
+}
+.photo {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--ratio,4 / 3);
+  background: #e1edf1;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #cfdee4;
+}
+.photo-label {
+  padding: 24px;
+  text-align: center;
+  color: #486574;
+  position: relative;
+  z-index: 1;
+}
+.photo-label>span:not(.photo-mark) {
+  display: block;
+  font-weight: 700;
+}
+.photo-label small {
+  display: block;
+  margin-top: 8px;
+}
+.photo-mark {
+  display: block;
+  color: #7195a5;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+.photo picture,.photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.photo img {
+  object-fit: cover;
+  object-position: var(--pos,50% 50%);
+}
+.photo.has-image .photo-label {
+  display: none;
+}
+.free-badge {
+  position: absolute;
+  right: -12px;
+  bottom: 0;
+  width: 96px;
+  height: 96px;
+  background: var(--yellow);
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  font-weight: 800;
+  transform: rotate(7deg);
+  box-shadow: 0 0 0 6px var(--light);
+}
+.hero-note {
+  letter-spacing: .15em;
+  margin-top: 18px;
+  color: var(--muted);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
+.btn {
+  min-height: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 14px 23px;
+  border: 0;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 800;
+  transition: transform .18s,background .18s;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn.blue {
+  background: #076fb5;
+  color: white;
+}
+.btn.yellow {
+  background: var(--yellow);
+  color: var(--navy);
+}
+.btn.outline {
+  border: 1px solid #b8ccd6;
+  background: white;
+  color: var(--navy);
+}
+.event-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #bfd7e2;
+  padding: 24px 0;
+  gap: 24px;
+}
+.date {
+  font-weight: 800;
+  letter-spacing: .01em;
+}
+.date em {
+  font-style: normal;
+  background: white;
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  width: 31px;
+  height: 31px;
+  margin-left: 8px;
+}
+.place {
+  font-weight: 700;
+}
+.place small {
+  display: block;
+  font-weight: 400;
+}
+.ribbon {
+  height: 6px;
+  background: linear-gradient(to right,var(--blue) 0 25%,var(--pink) 25% 50%,var(--yellow) 50% 75%,var(--green) 75%);
+}
+.shortcut {
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  padding: 28px 0;
+  gap: 1px;
+}
+.shortcut a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  border-right: 1px solid var(--line);
+  padding: 14px 4px;
+}
+.shortcut a:last-child {
+  border: 0;
+}
+.icon {
+  color: #0872b7;
+}
+.shortcut a:hover {
+  background: var(--light);
+}
+.about .big-number {
+  color: #d4e9ef;
+  font-weight: 900;
+  letter-spacing: -.09em;
+  margin: 30px 0 0;
+}
+.experience {
+  border-top: 3px solid var(--blue);
+  padding: 30px;
+  background: #f0f8fc;
+}
+.experience:nth-child(2) {
+  border-color: var(--pink);
+  background: #fcf2f5;
+}
+.experience:nth-child(3) {
+  border-color: var(--green);
+  background: #eff8f2;
+}
+.num {
+  letter-spacing: .12em;
+  font-weight: 800;
+  color: #506b7b;
+  display: block;
+  margin-bottom: 24px;
+}
+.experience p {
+  margin: 0;
+}
+.two-col {
+  align-items: start;
+}
+.program .photo {
+  position: sticky;
+  top: 120px;
+}
+.info-box {
+  background: white;
+  border: 1px solid #c9dce6;
+  padding: 26px;
+  margin-top: 28px;
+}
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #f9dfeb;
+  color: #8c294c;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+.booth {
+  background: white;
+  border: 1px solid var(--line);
+}
+.booth-body {
+  padding: 24px;
+}
+.booth p {
+  margin: 0;
+}
+.booth .photo {
+  border: 0;
+  border-bottom: 1px solid var(--line);
+}
+.workshop-intro {
+  margin-bottom: 40px;
+}
+.session {
+  display: inline-block;
+  border-bottom: 2px solid var(--yellow);
+  padding: 4px 0;
+  font-weight: 800;
+}
+/* 見本写真の表示枠は4:3。応募写真の推奨比率4:5とは独立したレイアウトです。 */
+.photo-pair {
+  display: grid;
+  grid-template-columns: minmax(0,1fr);
+  gap: 2rem;
+  width: 100%;
+  margin: 0;
+  padding: .5rem .75rem;
+  transform: none;
+  justify-self: stretch;
+}
+/* 元の表示幅 (100% - 1.5rem) の85%。元の配置領域内で中央に縮め、左右のずれ幅を保ちます。 */
+.photo-pair .photo {
+  width: calc(85% - 1.275rem);
+  aspect-ratio: 4 / 3;
+  justify-self: start;
+  margin: 0 calc(7.5% - .1125rem);
+  border-radius: 14px;
+  overflow: hidden;
+  transform: rotate(-1.25deg);
+}
+.photo-pair .photo picture,
+.photo-pair .photo img {
+  border-radius: inherit;
+}
+.photo-pair .photo:nth-child(2) {
+  margin-top: .25rem;
+  transform: rotate(1.25deg);
+  justify-self: end;
+}
+.list {
+  padding-left: 20px;
+}
+.deadline {
+  font-weight: 800;
+  color: #9d315a;
+}
+.timeline {
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.timeline li {
+  position: relative;
+  padding: 0 0 36px 34px;
+  border-left: 2px solid #b6d9e9;
+  display: grid;
+  grid-template-columns: 11.25rem minmax(0, 1fr);
+  gap: 20px;
+}
+.timeline li:before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 9px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 5px var(--light);
+}
+.timeline li:last-child {
+  padding-bottom: 0;
+  border-color: transparent;
+}
+.timeline time {
+  font-weight: 800;
+}
+.timeline b {
+  display: block;
+}
+.timeline small {
+  display: block;
+  margin-top: .25rem;
+  color: var(--muted);
+}
+.story {
+  background: #f2f6f5;
+}
+.story .section-head {
+  text-align: center;
+}
+.story .photo {
+  background: transparent;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.story .photo picture,.story .photo img {border-radius:inherit}
+.story .photo img {object-fit:contain}
+.story .photo.story-photo-portrait {width:min(100%,26rem);margin-inline:auto}
+.story strong {
+  background: linear-gradient(transparent 65%,#f5e3a0 65%);
+}
+.story .statement {
+  margin: 3rem auto 0;
+  text-align: center;
+  font-weight: 800;
+  color: #12699a;
+}
+.support {
+  background: #fff1c9;
+}
+.support .wrap {
+  align-items: center;
+}
+.comfort-list {
+  margin: 35px 0;
+}
+.comfort-item {
+  padding: 24px;
+  background: var(--light);
+  font-weight: 700;
+  text-align: center;
+}
+.comfort-item .icon {
+  display: block;
+  margin-bottom: 12px;
+}
+.data {
+  margin: 0;
+}
+.data>div {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.data dt {
+  font-weight: 800;
+}
+.data dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.access-box {
+  background: var(--light);
+  padding: 35px;
+}
+.access-box .pin {
+  color: var(--blue);
+  margin-bottom: 25px;
+}
+.faq {
+  margin: auto;
+}
+details {
+  border-bottom: 1px solid #cddde5;
+}
+summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-weight: 700;
+  padding: 25px 0;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+.q {
+  color: #076cae;
+}
+.plus {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-weight: 400;
+}
+details[open] .plus {
+  transform: rotate(45deg);
+}
+.answer {
+  padding: 0 35px 25px;
+  color: #405a69;
+}
+.final {
+  background: var(--light);
+  text-align: center;
+}
+.final .actions {
+  justify-content: center;
+}
+.footer {
+  background: var(--navy);
+  color: white;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 35px;
+}
+.footer .logo i,.footer .logo em {
+  color: white;
+}
+.footer a {
+  overflow-wrap: anywhere;
+}
+.copyright {
+  border-top: 1px solid #426071;
+  padding-top: 20px;
+  margin-top: 35px;
+  opacity: .8;
+}
+.floating-donate {display:none}
+.floating-donate[hidden] {display:none}
+.floating-donate:focus-visible {outline:3px solid var(--navy);outline-offset:4px}
+.status {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100% - 32px);
+  width: max-content;
+  background: #10364d;
+  color: white;
+  padding: 15px 24px;
+  border-radius: 8px;
+  z-index: 80;
+  box-shadow: 0 5px 25px #10364d30;
+}
+.status:empty {
+  display: none;
+}
+.form-note {
+  color: #465d6c;
+  margin-top: 15px;
+}
+.donation-hero {
+  padding: 75px 0;
+  background: #fff3d8;
+}
+.donation-hero .photo {
+  border-radius: 45% 45% 0 0;
+  aspect-ratio: 4/3;
+  background: #e4ebe8;
+}
+.donation-hero .two-col {
+  align-items: center;
+}
+.support-gallery {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 30px;
+}
+.support-gallery p {
+  font-weight: 700;
+  margin-top: 23px;
+}
+.bank-box {
+  padding: 40px;
+  background: white;
+  border: 1px solid var(--line);
+}
+.bank-row {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.bank-row dt {
+  font-weight: 800;
+}
+.bank-row dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.copy {
+  border: 1px solid #c7d7e1;
+  border-radius: 4px;
+  background: #f4f9fb;
+  padding: 8px 12px;
+  min-height: 44px;
+}
+.bank-notice {
+  background: #fff4d8;
+  border-left: 3px solid var(--yellow);
+  padding: 16px 20px;
+}
+.pending {
+  color: var(--muted);
+}
+@media(max-width:960px) {
+  .hero .photo {
+    min-height: 265px;
+  }
+  .hero .actions {
+    gap: 9px;
+  }
+  .hero .btn {
+    padding: 13px 16px;
+    gap: 10px;
+  }
+  .experience {
+    padding: 23px;
+  }
+  .data>div {
+    grid-template-columns: 100px 1fr;
+    gap: 12px;
+  }
+  .support-gallery {
+    gap: 18px;
+  }
+  .bank-box {
+    padding: 28px;
+  }
+}
+@media(max-width:700px) {
+  .hero {
+    padding-top: 32px;
+  }
+  .hero-top {
+    padding-bottom: 28px;
+  }
+  .hero-copy {
+    width: 100%;
+  }
+  .hero .eyebrow {
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    margin-bottom: 18px;
+  }
+  .hero-description {
+    margin-bottom: 18px;
+  }
+  .hero-visual {
+    padding: 10px 12px 14px;
+  }
+  .hero .photo {
+    aspect-ratio: 4/5;
+    min-height: 0;
+    max-height: 460px;
+  }
+  .hero-note {
+    margin-top: 10px;
+  }
+  .free-badge {
+    width: 78px;
+    height: 78px;
+    right: 0;
+  }
+  .hero .actions {
+    margin-top: 20px;
+  }
+  .hero .btn {
+    flex: 1;
+    gap: 8px;
+    padding: 13px 10px;
+  }
+  .event-strip {
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 22px 0;
+  }
+  .shortcut {
+    grid-template-columns: repeat(3,1fr);
+    gap: 8px;
+    padding: 22px 0;
+  }
+  .shortcut a {
+    background: #f5f9fb;
+    border: 1px solid var(--line)!important;
+    padding: 13px 3px;
+    border-radius: 5px;
+  }
+  .eyebrow {
+    margin-bottom: 14px;
+  }
+  .about .big-number {
+    display: none;
+  }
+  .experience {
+    padding: 28px;
+  }
+  .experience .num {
+    margin-bottom: 12px;
+  }
+  .program .photo {
+    position: relative;
+    top: auto;
+  }
+  .program .two-col {
+    gap: 28px;
+  }
+  .info-box {
+    padding: 22px;
+  }
+  .info-grid {
+    gap: 12px;
+  }
+  .booth .photo {
+    aspect-ratio: 3/2;
+  }
+  .booth-body {
+    padding: 25px;
+  }
+
+  .photo-label {
+    padding: 18px;
+  }
+  .timeline li {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding-left: 25px;
+  }
+  .story .statement {
+    margin-top: 45px;
+  }
+  .support .actions {
+    margin-top: 30px;
+  }
+  .comfort-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
+    padding: 20px;
+  }
+  .comfort-item .icon {
+    margin: 0;
+    flex-shrink: 0;
+  }
+  .data>div {
+    grid-template-columns: 90px 1fr;
+  }
+  .access-box {
+    padding: 28px;
+  }
+  summary {
+    gap: 12px;
+    padding: 22px 0;
+  }
+  .answer {
+    padding: 0 0 23px 30px;
+  }
+  .footer-top {
+    display: block;
+  }
+  .footer-top>div+div {
+    margin-top: 30px;
+  }
+  .final .actions {
+    flex-direction: column;
+  }
+  .donation-hero {
+    padding: 42px 0;
+  }
+  .donation-hero .two-col {
+    gap: 35px;
+  }
+  .bank-box {
+    padding: 22px 18px;
+  }
+  .bank-row {
+    grid-template-columns: 80px 1fr;
+    gap: 10px;
+  }
+  .bank-row .copy {
+    grid-column: 2;
+    justify-self: start;
+  }
+  .bank-notice {
+    padding: 14px;
+  }
+  .btn {
+    max-width: 100%;
+  }
+  .photo img {
+    object-position: var(--mobile-pos,50% 50%);
+  }
+  .section-head h2 br {
+    display: none;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,*:before,*:after {
+    transition: none!important;
+    animation: none!important;
+  }
+}
+.hero-top>*,.two-col>*,.overview>*,.about>* {
+  min-width: 0;
+}
+.photo {
+  min-width: 0;
+  width: 100%;
+}
+@media(max-width:960px) {
+  .hero .photo {
+    min-height: 0;
+  }
+}
+@media(max-width:700px) {
+  .hero-copy {
+    order: 0;
+  }
+  .event-strip {
+    order: 1;
+    width: 100%;
+    margin-top: 14px;
+  }
+  .hero-visual {
+    order: 2;
+    align-self: center;
+    margin: 14px 0 28px;
+  }
+  .hero .photo {
+    min-height: 0;
+  }
+  .booth .photo {
+    aspect-ratio: 4/3;
+  }
+}
+.hero.hero-revised {
+  padding-top: 48px;
+}
+.hero-revised .hero-top {
+  align-items: center;
+  padding-bottom: 38px;
+}
+.hero-revised .eyebrow {
+  letter-spacing: .16em;
+  margin-bottom: 17px;
+}
+.hero-revised h1 {
+  letter-spacing: 0;
+  margin: 0 0 24px;
+  font-weight: 800;
+}
+.hero-revised .hero-subcopy {
+  font-weight: 600;
+  letter-spacing: .015em;
+  margin-bottom: 25px;
+}
+.hero-revised .hero-subcopy p {
+  margin: 0 0 12px;
+}
+.hero-revised .hero-subcopy p:last-child {
+  margin-bottom: 0;
+}
+.hero-revised .event-title {
+  margin: 0 0 22px;
+  letter-spacing: 0;
+}
+.hero-revised .event-title small {
+  margin: 0 0 3px;
+  letter-spacing: .08em;
+}
+.hero-revised .color-word {
+  font-weight: 900;
+  letter-spacing: -.035em;
+}
+.hero-revised .color-word span:nth-child(4n+1) {
+  color: #008bce;
+}
+.hero-revised .color-word span:nth-child(4n+2) {
+  color: #ed6395;
+}
+.hero-revised .color-word span:nth-child(4n+3) {
+  color: #f5ba42;
+}
+.hero-revised .color-word span:nth-child(4n) {
+  color: #60b77c;
+}
+.hero-revised .event-year {
+  margin-left: 5px;
+}
+:is(.hero-revised,.final) .hero-actions {
+  margin: 0;
+}
+:is(.hero-revised,.final) .hero-actions .btn {
+  width: 100%;
+  min-height: 58px;
+  padding: 13px 16px;
+  gap: 12px;
+}
+:is(.hero-revised,.final) .hero-actions .primary-action {
+  grid-column: 1 / -1;
+  min-height: 58px;
+}
+:is(.hero-revised,.final) .hero-actions .pink {
+  background: #b82c60;
+  color: white;
+}
+:is(.hero-revised,.final) .hero-actions .btn>span:first-child {
+  flex: 1;
+  text-align: center;
+}
+.hero-revised .form-note {
+  margin: 12px 0 0;
+}
+.hero-revised .hero-visual {
+  padding: 0 0 20px;
+  margin: 0;
+  align-self: center;
+}
+.hero-revised .hero-visual:before {
+  inset: 12px -12px 5px 14px;
+  border-radius: 22px 22px 70px 22px;
+  transform: rotate(2deg);
+}
+.hero-revised .photo {
+  aspect-ratio: 4/3;
+  min-height: 0;
+  max-height: none;
+  border-radius: 20px 20px 70px 20px;
+  border: 0;
+  background: #d9eaf0;
+}
+.hero-revised .hero-emblem {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 145px;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 3px 18px #10364d20;
+  z-index: 2;
+}
+.hero-revised .event-strip {
+  align-items: center;
+  padding: 27px 0 30px;
+}
+.hero-revised .date {
+  white-space: nowrap;
+}
+.hero-revised .date small {
+  display: inline-block;
+  margin-top: 6px;
+}
+.hero-revised .place small {
+  margin-top: 4px;
+}
+.hero-revised .audience strong {
+  display: block;
+}
+.hero-revised .audience small {
+  display: block;
+  color: #405b69;
+  margin-top: 7px;
+}
+.hero-revised .audience-label {
+  display: inline-block;
+  color: white;
+  background: #126c9d;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-right: 7px;
+}
+.hero-revised .free-badge {
+  position: static;
+  float: right;
+  width: 65px;
+  height: 65px;
+  margin: 0 0 8px 10px;
+  transform: rotate(5deg);
+  box-shadow: none;
+}
+@media(max-width:1150px) {
+  .hero-revised .audience {
+    grid-column: 1 / -1;
+  }
+  .hero-revised .free-badge {
+    float: left;
+    margin: 0 20px 0 0;
+  }
+  .hero-revised .hero-emblem {
+    width: 120px;
+  }
+}
+@media(min-width:701px) and (max-width:960px) {
+  .hero-revised {
+    padding-top: 35px;
+  }
+  :is(.hero-revised,.final) .hero-actions .btn {
+    padding: 12px 10px;
+  }
+  .hero-revised .hero-emblem {
+    width: 100px;
+  }
+}
+@media(max-width:700px) {
+  .hero.hero-revised {
+    padding-top: 30px;
+  }
+  .hero-revised .hero-top {
+    padding-bottom: 0;
+  }
+  .hero-revised .hero-copy {
+    order: 0;
+  }
+  .hero-revised .eyebrow {
+    letter-spacing: .13em;
+    margin-bottom: 16px;
+  }
+  .hero-revised h1 {
+    margin-bottom: 23px;
+  }
+  .hero-revised .hero-subcopy {
+    margin-bottom: 26px;
+  }
+  .hero-revised .hero-subcopy p {
+    margin-bottom: 15px;
+  }
+  .hero-revised .event-title {
+    margin-bottom: 21px;
+  }
+  .hero-revised .event-year {
+    margin-left: 3px;
+  }
+  :is(.hero-revised,.final) .hero-actions .btn {
+    min-height: 64px;
+    padding: 11px 10px;
+    gap: 5px;
+  }
+  :is(.hero-revised,.final) .hero-actions .primary-action {
+    min-height: 56px;
+  }
+  :is(.hero-revised,.final) .hero-actions .application-label {
+    max-width: 10em;
+  }
+  .hero-revised .form-note {
+    margin-top: 12px;
+  }
+  .hero-revised .hero-visual {
+    order: 1;
+    margin: 0;
+    padding: 0 0 12px;
+    align-self: stretch;
+  }
+  .hero-revised .hero-visual:before {
+    inset: 10px -6px 0 8px;
+    border-radius: 14px 14px 44px 14px;
+    transform: rotate(1.5deg);
+  }
+  .hero-revised .photo {
+    aspect-ratio: 3/2;
+    border-radius: 14px 14px 44px 14px;
+  }
+  .hero-revised .hero-emblem {
+    width: 95px;
+    right: 4px;
+    bottom: 2px;
+  }
+  .hero-revised .event-strip {
+    margin-top: 24px;
+    padding: 25px 0 30px;
+  }
+  .hero-revised .audience {
+    grid-column: auto;
+  }
+  .hero-revised .audience small {
+    clear: both;
+    padding-top: 9px;
+  }
+  .hero-revised .free-badge {
+    float: right;
+    width: 61px;
+    height: 61px;
+    margin: 0 0 8px 9px;
+  }
+}
+:is(.hero-revised,.final) .hero-actions .pink {
+  background: #E85C90;
+  color: #fff;
+  font-weight: 800;
+  text-shadow: 0 1px 1px #7c234d40;
+}
+.hero-revised .hero-subcopy p:first-child {
+  font-weight: 600;
+}
+.hero-revised .hero-subcopy p:nth-child(2) {
+  font-weight: 400;
+}
+.hero-revised .free-badge {
+  width: 70px;
+  height: 70px;
+}
+.hero-revised .form-note {
+  color: #28495c;
+}
+.hero-revised .hero-emblem {
+  right: -10px;
+  bottom: 0;
+  display: block;
+}
+.hero-revised .hero-emblem[hidden] {
+  display: none;
+}
+.hero-revised .hero-emblem-crop {
+  position: absolute;
+  inset: 5px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.hero-revised .hero-emblem-image {
+  position: absolute;
+  width: 162.857143%;
+  height: auto;
+  max-width: none;
+  left: -37.142857%;
+  top: -22.857143%;
+  display: block;
+}
+@media(max-width:700px) {
+  .hero-revised .free-badge {
+    width: 66px;
+    height: 66px;
+  }
+  .hero-revised .hero-emblem {
+    width: 105px;
+    right: -6px;
+    bottom: -2px;
+  }
+}
+.shortcut .shortcut-icon {
+  display: block;
+  width: 28px;
+  height: 28px;
+  color: #0872b7;
+  flex-shrink: 0;
+}
+.shortcut a {
+  min-height: 90px;
+  gap: 10px;
+  justify-content: center;
+}
+#about .about-copy p {
+  margin-bottom: 1.15em;
+}
+#about .about-copy p:last-child {
+  margin-bottom: 0;
+}
+#about .about-copy strong {
+  font-weight: 800;
+}
+#about h2 br {
+  display: initial;
+}
+@media(max-width:700px) {
+  .shortcut a {
+    min-height: 90px;
+    gap: 9px;
+    padding: 14px 3px;
+  }
+  .shortcut .shortcut-icon {
+    width: 28px;
+    height: 28px;
+  }
+  #about .about-copy p {
+    margin-bottom: 1.2em;
+  }
+  #about .about-copy p:last-child {
+    margin-bottom: 0;
+  }
+}
+#three-wakuwaku .cards {
+  align-items: stretch;
+}
+#three-wakuwaku .experience {
+  min-width: 0;
+  padding: 32px;
+}
+#three-wakuwaku .num {
+  margin-bottom: 22px;
+}
+#three-wakuwaku h3 {
+  min-height: 0;
+  margin-bottom: 22px;
+  letter-spacing: .025em;
+}
+#three-wakuwaku h3 span {
+  display: inline-block;
+  max-width: 100%;
+}
+#three-wakuwaku .experience p {
+  word-break: normal;
+  overflow-wrap: normal;
+  line-break: strict;
+  margin: 0 0 1em;
+}
+#three-wakuwaku .experience p .keep-word {
+  white-space: nowrap;
+}
+#three-wakuwaku .experience p:last-child {
+  margin-bottom: 0;
+}
+@media(min-width:701px) and (max-width:960px) {
+  #three-wakuwaku .experience {
+    padding: 26px 22px;
+  }
+}
+@media(max-width:700px) {
+  #three-wakuwaku .experience {
+    padding: 28px;
+  }
+  #three-wakuwaku .num {
+    margin-bottom: 18px;
+  }
+  #three-wakuwaku h3 {
+    min-height: 0;
+    margin-bottom: 21px;
+  }
+}
+#three-wakuwaku .experience:first-child {
+  position: relative;
+}
+#three-wakuwaku .main-program-badge {
+  position: absolute;
+  top: 8px;
+  right: 13px;
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #087FCC;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+#program h2 span {
+  display: inline-block;
+}
+#program .two-col {
+  align-items: start;
+}
+#program .photo {
+  aspect-ratio: 4/3;
+  border: 0;
+  border-radius: 10px;
+  background: #deedf3;
+}
+#program .photo img {
+  transform: scale(1.55);
+  transform-origin: 50% 100%;
+}
+#program .program-copy {
+  min-width: 0;
+}
+#program .program-copy h3 {
+  margin: 0 0 25px;
+}
+#program .program-intro p {
+  letter-spacing: .025em;
+  margin: 0 0 1.25em;
+  line-break: strict;
+  word-break: normal;
+}
+#program .program-intro .program-lead {
+  margin-bottom: 22px;
+}
+#program .program-intro strong {
+  font-weight: 800;
+}
+#program .performance-card {
+  margin-top: 30px;
+  background: white;
+  border: 1px solid #cddfe8;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 22px #10364d06;
+}
+#program .performance-times {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  padding: 25px 22px;
+  gap: 12px;
+  border-bottom: 1px solid #e2ecf1;
+}
+#program .performance-times>div {
+  text-align: center;
+  min-width: 0;
+}
+#program .performance-times>div+div {
+  border-left: 1px solid #e2ecf1;
+}
+#program .performance-times span {
+  display: block;
+  color: #526775;
+  margin-bottom: 4px;
+}
+#program .performance-times time {
+  display: block;
+  font-weight: 800;
+  letter-spacing: .01em;
+  color: #103f5b;
+  font-variant-numeric: tabular-nums;
+}
+#program .performance-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 17px 28px;
+  padding: 23px 28px;
+  margin: 0;
+}
+#program .performance-details .performance-venue {
+  grid-column: 1 / -1;
+}
+#program .performance-details dt {
+  color: #526775;
+  margin-bottom: 2px;
+}
+#program .performance-details dd {
+  margin: 0;
+  font-weight: 700;
+}
+#program .performance-notice {
+  padding: 16px 28px 18px;
+  background: #f2f8fc;
+  border-top: 1px solid #e2ecf1;
+}
+#program .performance-notice p {
+  color: #405d6e;
+  margin: 0;
+}
+#program .performance-notice p+p {
+  margin-top: 3px;
+}
+#program .actions {
+  margin-top: 24px;
+}
+#program .actions .btn {
+  min-height: 56px;
+}
+@media(min-width:701px) and (max-width:960px) {
+  #program .performance-times {
+    padding: 23px 12px;
+    gap: 8px;
+  }
+  #program .performance-details {
+    padding: 22px;
+  }
+  #program .performance-notice {
+    padding: 16px 22px;
+  }
+}
+@media(max-width:700px) {
+  #program .photo {
+    position: relative;
+    top: auto;
+    aspect-ratio: 3/2;
+    border-radius: 8px;
+  }
+  #program .photo img {
+    transform: scale(1.5);
+  }
+  #program .program-copy h3 {
+    margin-bottom: 22px;
+  }
+  #program .program-intro p {
+    margin-bottom: 1.2em;
+  }
+  #program .performance-card {
+    margin-top: 27px;
+    border-radius: 9px;
+  }
+  #program .performance-times {
+    padding: 23px 12px;
+    gap: 7px;
+  }
+  #program .performance-details {
+    padding: 21px;
+    gap: 16px 24px;
+  }
+  #program .performance-notice {
+    padding: 15px 21px 17px;
+  }
+  #program .actions .btn {
+    width: 100%;
+    gap: 10px;
+    min-height: 58px;
+    padding: 14px 13px;
+  }
+}
+#program .program-more {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid #d3e3ed;
+}
+#program .program-more h4 {
+  font-weight: 700;
+  letter-spacing: .025em;
+  color: #405d6e;
+  margin: 0 0 12px;
+}
+#program .program-more-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+#program .program-more-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 46px;
+  padding: 10px 17px;
+  border: 1px solid #b9cfdc;
+  border-radius: 5px;
+  background: #ffffffa6;
+  color: #28495e;
+  font-weight: 600;
+  text-decoration: none;
+}
+#program .program-more-links a:hover {
+  background: white;
+  border-color: #6c9ebd;
+}
+@media(max-width:400px) {
+  #program .program-more-links {
+    flex-direction: column;
+  }
+  #program .program-more-links a {
+    width: 100%;
+    min-height: 48px;
+  }
+}
+#program .program-more {
+  display: grid;
+  grid-template-columns: 80px minmax(0,1fr);
+  align-items: center;
+  column-gap: 20px;
+}
+#program .program-official-logo {
+  display: block;
+  width: 80px;
+  height: auto;
+  max-width: 100%;
+}
+#program .program-more-content {
+  min-width: 0;
+}
+@media(max-width:700px) {
+  #program .program-more {
+    grid-template-columns: 72px minmax(0,1fr);
+    column-gap: 16px;
+  }
+  #program .program-official-logo {
+    width: 72px;
+  }
+}
+#workshops h2 span,#workshops .booth h3 span {
+  display: inline-block;
+}
+#workshops .workshop-intro {
+  margin-bottom: 30px;
+}
+#workshops .workshop-intro p {
+  margin-bottom: 1.1em;
+}
+#workshops .workshop-intro p:last-child {
+  margin-bottom: 0;
+}
+#workshops .workshop-session {
+  padding: 24px 28px;
+  margin: 0 0 40px;
+  border: 1px solid #eadfc6;
+  border-left: 3px solid var(--yellow);
+  border-radius: 6px;
+  background: #fff;
+}
+#workshops .workshop-time {
+  margin: 0 0 14px;
+}
+#workshops .workshop-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 15px;
+}
+#workshops .workshop-tags span {
+  display: inline-block;
+  padding: 4px 11px;
+  font-weight: 700;
+  background: #eef7fb;
+  color: #245b78;
+  border-radius: 4px;
+}
+#workshops .workshop-tables {
+  margin: 0 0 7px;
+}
+#workshops .workshop-note {
+  color: #526775;
+  margin: 0;
+}
+#workshops .workshop-grid {
+  align-items: stretch;
+}
+#workshops .booth {
+  min-width: 0;
+}
+#workshops .booth .photo {
+  aspect-ratio: 1 / 1;
+  border-bottom: 1px solid var(--line);
+}
+#workshops .booth-body {
+  padding: 25px;
+}
+#workshops .booth h3 {
+  margin: 0 0 17px;
+  letter-spacing: .02em;
+}
+#workshops .booth-body p {
+  line-break: strict;
+  word-break: normal;
+  margin: 0 0 1em;
+}
+#workshops .booth-body p:last-child {
+  margin-bottom: 0;
+}
+#workshops .booth-body .booth-kicker {
+  color: #526775;
+  margin: 0 0 7px;
+}
+#workshops .booth--partner,
+#workshops .booth--partner .booth-body {
+  display: flex;
+  flex-direction: column;
+}
+#workshops .booth--partner .booth-body {
+  flex: 1;
+}
+#workshops .booth-links {
+  list-style: none;
+  display: grid;
+  gap: .25rem;
+  margin: auto 0 0;
+  padding: .625rem 0 0;
+  border-top: 1px solid var(--line);
+}
+#workshops .booth-links a {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 44px;
+  padding: .375rem .25rem;
+  color: #075a96;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: none;
+}
+#workshops .booth-links a span {
+  text-decoration: underline;
+  text-underline-offset: .2em;
+  overflow-wrap: anywhere;
+}
+#workshops .booth-links a:hover {
+  color: var(--navy);
+  background: var(--light);
+}
+#workshops .booth-links svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex: none;
+}
+@media(min-width:1101px) {
+  #workshops .booth--partner h3:first-child {
+    margin-top: calc(1.8 * var(--note-size) + 7px);
+  }
+}
+@media(max-width:700px) {
+  #workshops .workshop-session {
+    padding: 21px 20px;
+    margin-bottom: 30px;
+  }
+  #workshops .booth-body {
+    padding: 25px;
+  }
+}
+#workshops .booth-smile-copy>p:not(.booth-kicker):has(+p) {
+  margin-bottom: .4em;
+}
+@media(max-width:700px) {
+  #workshops .workshop-grid {
+    align-items: start;
+  }
+}
+#photos .section-head h2 br {
+  display: initial;
+}
+#photos .photo-invite {
+  margin: 0 0 24px;
+  font-weight: 800;
+  letter-spacing: .025em;
+}
+#photos .photo-intro p {
+  margin: 0 0 1.1em;
+}
+#photos .photo-intro p:last-child {
+  margin-bottom: 26px;
+}
+#photos .photo-requirements {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ebd6df;
+  border-radius: 6px;
+  background: #ffffffa6;
+}
+#photos .photo-requirements li {
+  display: grid;
+}
+#photos .photo-requirements li+li {
+  border-top: 1px solid #efdee5;
+}
+#photos .photo-requirements strong {
+  font-weight: 800;
+}
+#photos .photo-entry-note {
+  font-weight: 700;
+  color: #8e3156;
+  border-left: 3px solid #e48aac;
+  padding: 10px 14px;
+  margin: 16px 0 27px;
+  background: #ffffff80;
+}
+#photos .photo-qa {
+  padding: .875rem 1rem;
+  margin: 0 0 1.5rem;
+  border: 1px solid #ebd6df;
+  border-radius: 6px;
+  background: #ffffffa6;
+  font-size: var(--card-size);
+  line-height: 1.8;
+}
+#photos .photo-qa p {
+  margin: 0;
+}
+#photos .photo-qa p + p {
+  margin-top: .375rem;
+}
+#photos .deadline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 15px;
+  align-items: baseline;
+  margin: 0 0 18px;
+}
+#photos> .wrap>div:first-child> .btn {
+  min-height: 56px;
+}
+@media(max-width:700px) {
+  #photos .photo-invite {
+    margin-bottom: 23px;
+  }
+  #photos .photo-entry-note {
+    padding: 10px 12px;
+  }
+  #photos> .wrap>div:first-child> .btn {
+    width: 100%;
+    padding: 14px 16px;
+    gap: 12px;
+  }
+}
+
+/* ===== 読みやすさの共通設定 =====
+   旧CSSの個別font-size・line-heightと対象の幅・列数指定は除去し、
+   このブロックへ集約しています。htmlの基準サイズは固定しません。 */
+:root {
+  --body-size:1.125rem;
+  --card-size:1.0625rem;
+  --note-size:.9375rem;
+  --header-height:5.5rem;
+}
+html {scroll-padding-top:calc(var(--header-height) + 1rem)}
+body {font-size:var(--body-size);line-height:1.9}
+h1,h2,h3,h4 {line-height:1.6}
+h2,.about h2,.support h2,.final h2 {font-size:clamp(2.125rem,1.9rem + .5vw,2.5rem)}
+h3,.experience h3,.booth h3 {font-size:1.375rem}
+.wrap {width:min(80rem,calc(100% - 5rem))}
+.narrow,.story .narrow {width:100%;max-width:47.5rem}
+.section {padding:4.75rem 0}
+.section-head {margin-bottom:2rem}
+.section-head h2 br {display:initial}
+.eyebrow {font-size:.875rem;line-height:1.6}
+.lead {font-size:1.375rem;line-height:1.9}
+.small,small,.form-note,.pending {font-size:var(--note-size);line-height:1.85}
+.num {font-size:.875rem;line-height:1.7}
+.btn {font-size:1.0625rem;line-height:1.6;max-width:100%;white-space:normal}
+.btn>span:first-child {min-width:0}
+.photo-label {font-size:1rem;line-height:1.7}
+.photo-label small {font-size:.875rem;line-height:1.7}
+.photo-mark {font-size:1.75rem;line-height:1.25}
+.photo-pair .photo-label {padding:.5rem;font-size:1rem;line-height:1.7}
+.photo-pair .photo-label small {font-size:.875rem;line-height:1.7}
+.icon {font-size:1.5625rem;line-height:1.4}
+.q {font-size:1.375rem}
+.plus {font-size:1.5rem}
+.access-box .pin {font-size:3.25rem}
+.shortcut a {font-size:1rem;line-height:1.6}
+.shortcut {display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px}
+.about,#about .about {display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:3rem}
+.about p,#about .about-copy p {font-size:var(--body-size);line-height:1.9}
+.about .big-number {font-size:6.875rem;line-height:1}
+.cards,#three-wakuwaku .cards {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+.two-col,#program .two-col {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem}
+.workshop-grid,#workshops .workshop-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.75rem}
+.overview {display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:3rem}
+.support .wrap {display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:3rem}
+.comfort-list {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:1.25rem}
+.comfort-copy>span {display:block}
+.comfort-caption {margin-top:.25rem}
+.experience p,.booth p,.data>div,.answer {font-size:var(--card-size);line-height:1.9}
+.comfort-item {font-size:1.0625rem;line-height:1.85}
+.access-box h3 {font-size:1.5rem}
+.timeline {width:100%;max-width:40rem}
+.timeline time {font-size:1.375rem;line-height:1.6}
+.timeline b {font-size:1.125rem;line-height:1.8}
+.timeline small {font-size:.9375rem;line-height:1.8}
+.faq {width:100%;max-width:60rem}
+summary {font-size:1.125rem;line-height:1.8}
+.answer {line-height:1.9}
+.story .narrow>p {font-size:var(--body-size);line-height:1.95;margin-bottom:1.3em;text-align:left}
+.story .photo {margin:2.5rem 0}
+.story .statement {font-size:clamp(2rem,1.7rem + .7vw,2.5rem);line-height:1.65}
+.support p {font-size:var(--body-size);line-height:1.9}
+.support .section-head {margin-bottom:0}
+.support h2>span {display:block}
+.support h2 .support-phrase {display:inline-block}
+.support p + p {margin-top:1.25em}
+.footer {padding:3rem 0}
+.footer p {font-size:var(--note-size);line-height:1.85}
+.copyright {font-size:.875rem;line-height:1.85}
+.status {font-size:1rem;line-height:1.8}
+
+/* ヘッダー：拡大した文字が収まる幅でのみ横並びにします。 */
+.header {position:fixed;inset:0 0 auto;height:var(--header-height);background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);z-index:30}
+.header-inner {width:min(90rem,calc(100% - 4rem));height:100%;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.logo {min-width:0;line-height:1.4}
+.logo small {font-size:.8125rem;line-height:1.5}
+.logo b {font-size:1.375rem;line-height:1.4}
+.logo .year {font-size:.65em}
+.nav {display:flex;align-items:center;gap:1.25rem}
+.nav a {font-size:1rem;font-weight:700;line-height:1.6;white-space:nowrap;padding:.625rem 0;text-decoration:none}
+.nav .nav-donate {background:var(--yellow);padding:.75rem 1.125rem;border-radius:6px}
+.menu-toggle {display:none;background:none;border:1px solid var(--line);border-radius:6px;width:3rem;height:3rem;padding:.625rem}
+main {padding-top:var(--header-height)}
+
+/* ファーストビュー */
+.hero-revised>.wrap {width:min(80rem,calc(100% - 5rem))}
+.hero-top,.hero-revised .hero-top {display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:3rem}
+.hero-revised h1 {font-size:clamp(2.75rem,2.5rem + .6vw,3.25rem);line-height:1.6}
+.hero-revised h1 .headline-line {white-space:normal}
+.hero-revised h1 .headline-line>span {display:inline-block;max-width:100%}
+.hero-revised .eyebrow {font-size:.8125rem;line-height:1.7}
+.hero-revised .hero-subcopy {font-size:var(--body-size);line-height:1.9}
+.hero-revised .event-title {font-size:1.75rem;line-height:1.65;white-space:normal}
+.hero-revised .event-title small {font-size:.9375rem;line-height:1.7}
+.hero-revised .color-word {font-size:2.375rem;display:inline-block}
+.hero-revised .event-year {font-size:.65em;display:inline-block}
+:is(.hero-revised,.final) .hero-actions {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
+:is(.hero-revised,.final) .hero-actions .btn {font-size:1rem;line-height:1.6;min-height:3.75rem}
+:is(.hero-revised,.final) .hero-actions .application-label {max-width:none}
+:is(.hero-revised,.final) .hero-actions .application-label>span {display:inline-block;max-width:100%}
+:is(.hero-revised,.final) .hero-actions .primary-action {font-size:1.125rem}
+.hero-revised .form-note {font-size:1rem;line-height:1.8}
+.hero-visual,.hero-revised .hero-visual {width:100%;max-width:none}
+.hero-revised .event-strip {display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr) minmax(0,1.45fr);gap:1.75rem}
+.hero-revised .date {font-size:2rem;line-height:1.35}
+.hero-revised .date em {font-size:1rem}
+.hero-revised .date small {font-size:1.125rem;line-height:1.7}
+.hero-revised .place {font-size:1.125rem;line-height:1.8}
+.hero-revised .place small {font-size:var(--note-size);line-height:1.85}
+.hero-revised .audience {font-size:1.0625rem;line-height:1.9}
+.hero-revised .audience small {font-size:var(--note-size);line-height:1.85}
+.hero-revised .audience-label {font-size:.875rem;line-height:1.5}
+.hero-revised .free-badge {font-size:1rem;line-height:1.5}
+
+/* 3つの魅力 */
+#three-wakuwaku h3 {font-size:1.375rem;line-height:1.65}
+#three-wakuwaku .experience p {font-size:var(--card-size);line-height:1.9}
+#three-wakuwaku .main-program-badge {font-size:.875rem;line-height:1.5}
+
+/* 心魂プロジェクト公演 */
+#program .program-copy h3 {font-size:1.5rem;line-height:1.65}
+#program .program-intro p {font-size:var(--body-size);line-height:1.9}
+#program .program-intro .program-lead {font-size:1.25rem;line-height:1.9}
+#program .performance-times span {font-size:.9375rem;line-height:1.7}
+#program .performance-times time {font-size:2rem;line-height:1.4}
+#program .performance-details dt {font-size:var(--note-size);line-height:1.7}
+#program .performance-details dd {font-size:1.125rem;line-height:1.8}
+#program .performance-notice p {font-size:1rem;line-height:1.85}
+#program .performance-notice p+p {font-size:var(--note-size);line-height:1.85}
+#program .actions .btn {font-size:1.0625rem;line-height:1.6}
+#program .program-more h4 {font-size:.9375rem;line-height:1.8}
+#program .program-more-links a {font-size:.9375rem;line-height:1.7}
+
+/* ワークショップ */
+#workshops .workshop-intro {width:100%;max-width:60rem}
+#workshops .workshop-intro p {font-size:var(--body-size);line-height:1.9}
+#workshops .workshop-time {font-size:1.25rem;line-height:1.85}
+#workshops .workshop-tags span {font-size:1rem;line-height:1.7}
+#workshops .workshop-tables {font-size:var(--body-size);line-height:1.9}
+#workshops .workshop-note {font-size:var(--note-size);line-height:1.85}
+#workshops .booth h3 {font-size:1.375rem;line-height:1.65}
+#workshops .booth-body p {font-size:var(--card-size);line-height:1.9}
+#workshops .booth-body .booth-kicker {font-size:var(--note-size);line-height:1.8}
+
+/* 写真・メッセージ募集 */
+#photos .section-head {margin-bottom:1.5rem}
+#photos .photo-invite {font-size:1.375rem;line-height:1.85}
+#photos .photo-invite span {display:inline-block;max-width:100%}
+#photos .photo-intro p {font-size:var(--body-size);line-height:1.9}
+#photos .photo-requirements li {grid-template-columns:7rem minmax(0,1fr);gap:.75rem;padding:1rem 1.125rem;font-size:var(--card-size);line-height:1.9}
+#photos .photo-requirements strong {font-size:1.0625rem;white-space:normal}
+#photos .photo-entry-note {font-size:1.0625rem;line-height:1.9}
+#photos .deadline {font-size:1.25rem;line-height:1.8}
+#photos .deadline>span {font-size:1rem}
+#photos .deadline strong {white-space:normal}
+#photos> .wrap>div:first-child> .btn {font-size:1.0625rem;line-height:1.6}
+
+/* 中間幅：本文の幅を確保してから文字を縮めずに列を減らします。 */
+@media(max-width:1279px) {
+  :root {--header-height:5rem}
+  .menu-toggle {display:block}
+  .nav {position:absolute;top:var(--header-height);left:0;right:0;display:flex;flex-direction:column;gap:0;background:white;padding:.75rem 1.75rem 1.5rem;box-shadow:0 18px 25px #10364d16;visibility:hidden;opacity:0;transform:translateY(-8px);transition:opacity .2s,transform .2s,visibility .2s}
+  .nav.open {visibility:visible;opacity:1;transform:translateY(0)}
+  .nav a {font-size:1rem;width:100%;min-height:3rem;padding:.875rem .25rem;border-bottom:1px solid var(--line)}
+  .nav .nav-donate {text-align:center;margin-top:.75rem}
+}
+@media(max-width:1100px) {
+  .wrap,.hero-revised>.wrap {width:calc(100% - 4rem)}
+  .section {padding:4.5rem 0}
+  .hero-revised h1 {font-size:2.75rem}
+  .hero-revised .hero-top {grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:2rem}
+  .hero-revised .event-strip {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero-revised .audience {grid-column:1 / -1}
+  .about,#about .about,.overview,.support .wrap {grid-template-columns:1fr;gap:2rem}
+  .about .big-number {display:none}
+  #about .section-head {margin-bottom:0}
+  .cards,#three-wakuwaku .cards {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .workshop-grid,#workshops .workshop-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .comfort-list {grid-template-columns:1fr}
+  .comfort-item {display:flex;align-items:center;gap:1rem;text-align:left}
+  .comfort-item .icon {margin:0}
+}
+@media(max-width:1000px) {
+  .two-col,#program .two-col {grid-template-columns:1fr;gap:2rem}
+  #program .photo {position:relative;top:auto}
+  .photo-pair {width:min(100%,42rem);justify-self:center}
+}
+@media(max-width:900px) {
+  .hero-revised .hero-top {grid-template-columns:1fr;gap:2rem}
+  .hero-revised .hero-visual {max-width:40rem;justify-self:center}
+  .cards,#three-wakuwaku .cards {grid-template-columns:1fr}
+  .hero-revised .event-strip {grid-template-columns:1fr}
+  .hero-revised .audience {grid-column:auto}
+  #photos .photo-requirements li {grid-template-columns:1fr;gap:.375rem}
+}
+
+/* スマートフォン */
+@media(max-width:700px) {
+  :root {--body-size:1.0625rem;--card-size:1rem;--note-size:.875rem;--header-height:4.75rem}
+  .wrap,.hero-revised>.wrap {width:calc(100% - 2.5rem)}
+  .section {padding:3.5rem 0}
+  .section-head {margin-bottom:1.75rem}
+  h2,.about h2,.support h2,.final h2 {font-size:1.75rem;line-height:1.65}
+  .support p {font-size:1rem}
+  #about h2,.story h2 {font-size:1.625rem;line-height:1.65;letter-spacing:.01em}
+  h3,.experience h3,.booth h3,#three-wakuwaku h3,#workshops .booth h3 {font-size:1.3125rem;line-height:1.65}
+  .eyebrow {font-size:.8125rem}
+  .lead {font-size:1.25rem;line-height:1.9}
+  .btn,:is(.hero-revised,.final) .hero-actions .btn,:is(.hero-revised,.final) .hero-actions .primary-action,#program .actions .btn,#photos> .wrap>div:first-child> .btn {font-size:1rem;line-height:1.6}
+  .logo b {font-size:1.1875rem}
+  .logo small {font-size:.75rem}
+  .header-inner {width:calc(100% - 2rem);gap:1rem}
+  .nav {padding:.75rem 1.25rem 1.5rem}
+  .hero-revised>.wrap {display:block}
+  .hero-revised .hero-top {display:flex;flex-direction:column;gap:1.75rem}
+  .hero-revised h1 {font-size:clamp(1.875rem,1.5rem + 2vw,2.25rem);line-height:1.6}
+  .hero-revised .hero-subcopy {font-size:var(--body-size);line-height:1.9}
+  .hero-revised .event-title {font-size:1.375rem}
+  .hero-revised .color-word {font-size:1.875rem}
+  .hero-revised .event-title small {font-size:.9375rem}
+  :is(.hero-revised,.final) .hero-actions {gap:.625rem}
+  :is(.hero-revised,.final) .hero-actions .btn {padding:.75rem .625rem;gap:.375rem;min-height:4.5rem}
+  :is(.hero-revised,.final) .hero-actions .primary-action {min-height:3.5rem}
+  :is(.hero-revised,.final) .hero-actions .btn:not(.primary-action)>span[aria-hidden] {display:none}
+  .hero-revised .form-note {font-size:1rem}
+  .hero-revised .event-strip {gap:1.5rem}
+  .hero-revised .date {font-size:1.875rem}
+  .hero-revised .date small {font-size:1.125rem}
+  .hero-revised .place {font-size:1.0625rem}
+  .hero-revised .audience {font-size:1rem}
+  .hero-revised .audience small {font-size:.875rem}
+  .hero-revised .audience-label {font-size:.875rem}
+  .hero-revised .free-badge {font-size:1rem;width:4.5rem;height:4.5rem}
+  .shortcut {grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
+  .shortcut a {font-size:.9375rem;line-height:1.65;padding:.875rem .25rem;min-height:6rem}
+  .workshop-grid,#workshops .workshop-grid {grid-template-columns:1fr}
+  .story .statement {font-size:1.875rem;line-height:1.7}
+  .comfort-item {font-size:1rem}
+  .data>div {grid-template-columns:5.5rem minmax(0,1fr);font-size:1rem;gap:.75rem}
+  .access-box h3 {font-size:1.375rem}
+  .timeline time {font-size:1.25rem}
+  .timeline li {display:grid}
+  .timeline b {font-size:1.0625rem}
+  .timeline small {font-size:.875rem}
+  summary {font-size:1.0625rem;line-height:1.8}
+  #program .program-copy h3 {font-size:1.375rem}
+  #program .program-intro .program-lead {font-size:1.1875rem}
+  #program .performance-times span {font-size:.875rem}
+  #program .performance-times time {font-size:1.75rem}
+  #program .performance-details dd {font-size:1.0625rem}
+  #program .program-more h4,#program .program-more-links a {font-size:.875rem}
+  #workshops .workshop-time {font-size:1.125rem}
+  #workshops .workshop-tags span {font-size:1rem}
+  #photos .photo-invite {font-size:1.25rem}
+  #photos .photo-requirements li {padding:.875rem;font-size:1rem}
+  #photos .photo-requirements strong {font-size:1rem}
+  #photos .photo-entry-note {font-size:1rem}
+  #photos .deadline {font-size:1.125rem}
+  #photos .deadline>span {font-size:1rem}
+  .photo-pair {width:100%;gap:1.5rem;padding:.375rem .5rem}
+  .photo-pair .photo {width:calc(85% - .6375rem);margin-inline:calc(7.5% - .05625rem);transform:rotate(-.65deg)}
+  .photo-pair .photo:nth-child(2) {transform:rotate(.65deg)}
+  .photo-pair .photo-label {font-size:.875rem}
+  .photo-pair .photo-label small {font-size:.875rem}
+  .photo-pair .photo-mark {font-size:1.5rem}
+  .footer {padding:2.625rem 0 calc(2.625rem + env(safe-area-inset-bottom))}
+  .floating-donate {display:inline-flex;position:fixed;right:calc(1rem + env(safe-area-inset-right));bottom:calc(1.125rem + env(safe-area-inset-bottom));z-index:35;align-items:center;justify-content:center;width:auto;min-height:46px;padding:0 1.125rem;border:0;border-radius:999px;background:var(--yellow);color:var(--navy);font-size:1rem;font-weight:800;line-height:1.5;text-decoration:none;box-shadow:0 3px 12px #10364d26}
+  .final-heading-line {display:block}
+  .status {font-size:1rem;bottom:calc(5rem + env(safe-area-inset-bottom))}
+}
+
+
+#access .overview {grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:start}
+#access .data>div {grid-template-columns:8rem minmax(0,1fr);padding:.875rem 0;font-size:1.0625rem;gap:1.25rem}
+#access .access-box p {font-size:1.0625rem;line-height:1.85}
+#access .access-facility,#access .access-walk {font-weight:700}
+#access .access-map {display:block;width:100%;max-width:100%;height:280px;margin:1.5rem 0;border:0;border-radius:12px}
+#access .access-links {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;margin-top:1.5rem}
+#access .access-links .btn {padding:.875rem .75rem;background:#fff;font-size:1rem;line-height:1.6;gap:.5rem;min-height:3.25rem;white-space:normal}
+#access .access-links svg {width:1rem;height:1rem;flex-shrink:0}
+@media(max-width:1100px) {
+  #access .overview {grid-template-columns:1fr}
+}
+@media(max-width:700px) {
+  #access .data>div {grid-template-columns:minmax(0,1fr);gap:.25rem;font-size:1rem}
+  #access .access-box {padding:1.5rem}
+  #access .access-box p {font-size:1rem}
+  #access .access-map {height:260px}
+  #access .access-links {grid-template-columns:1fr}
+}
+
+.final .actions.hero-actions {width:min(100%,40rem);margin:1.75rem auto 0}
+.final .final-invitation {max-width:42rem;margin-inline:auto;line-height:1.9}
+
+.final .final-invitation span {display:inline-block;max-width:100%}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="header">
+<div class="header-inner">
+<a class="logo" href="index.html" aria-label="世界ダウン症の日 WAKUWAKUフェスタ 2027 トップ">
+<small>世界ダウン症の日</small>
+<b>
+<i>WAKU</i><em>WAKU</em>フェスタ <span class="year">2027</span>
+</b>
+</a>
+<button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="main-nav">
+<span>
+</span>
+<span>
+</span>
+</button>
+<nav class="nav" id="main-nav" aria-label="メインナビゲーション">
+<a href="#about">イベントについて</a>
+<a href="#program">プログラム</a>
+<a href="#photos">写真・みんなの夢</a>
+<a href="#story">開催への想い</a>
+<a href="#access">開催概要・アクセス</a>
+<a class="nav-donate" href="#" data-donation="donation.html">寄付で応援する ↗</a>
+</nav>
+</div>
+</header>
+<main id="main">
+<section class="hero hero-revised">
+<div class="wrap">
+<div class="hero-top">
+<div class="hero-copy">
+<span class="eyebrow">WORLD DOWN SYNDROME DAY · YOKOHAMA</span>
+<h1><span class="headline-line">私らしく、誇らしく。</span><br><span class="headline-line underline"><span>未来は、私たちが</span><wbr><span>つくる。</span></span></h1>
+<div class="hero-subcopy">
+<p>ダウン症のある子どもたち、一人ひとりに、まだ知らない可能性がある。</p>
+<p>「好き」や「やってみたい」を大切に、自分らしい未来を、自分の手でひらいていこう。</p>
+</div>
+<p class="event-title"><small>世界ダウン症の日</small><span class="color-word" aria-label="WAKUWAKU"><span>W</span><span>A</span><span>K</span><span>U</span><span>W</span><span>A</span><span>K</span><span>U</span></span>フェスタ <span class="event-year">2027</span></p>
+<div class="actions hero-actions">
+<a class="btn blue primary-action" data-form="performance" aria-describedby="form-notice" href="#" target="_blank" rel="noopener noreferrer"><span>公演に申し込む</span><span aria-hidden="true">↗</span></a>
+<a class="btn pink" data-form="photo" aria-describedby="photo-notice" href="#" target="_blank" rel="noopener noreferrer"><span class="application-label"><span>写真・メッセージ</span><wbr><span>を応募する</span></span><span aria-hidden="true">↗</span></a>
+<a class="btn yellow" href="#" data-donation="donation.html"><span>寄付で応援する</span><span aria-hidden="true">↗</span></a>
+</div>
+<p class="form-note" id="form-notice" data-fixed-copy>申込開始：2027年1月1日（金）</p>
+</div>
+<div class="hero-visual">
+<figure class="photo" data-photo="hero" style="--ratio:4 / 3">
+<div class="photo-label"><span class="photo-mark" aria-hidden="true">＋</span><span>メインビジュアル</span><small>推奨 PC 4:3・スマホ3:2 ／ 子どもとパフォーマーが拳を合わせる交流風景</small></div>
+</figure>
+<!-- 支給画像の表記は TRISOMY / YOKOHAMA。元画像の文字・図柄は変更しません。 -->
+<span class="hero-emblem"><span class="hero-emblem-crop"><img class="hero-emblem-image" data-hero-emblem src="images/yokohama-emblem.png" alt="TRISOMY YOKOHAMA 世界ダウン症の日 3.21 記念エンブレム" width="1254" height="1254"></span></span>
+</div>
+</div>
+<div class="event-strip">
+<div class="date">2027. 3. 21<em>日</em><br><small>10:30〜15:00</small></div>
+<div class="place">障害者スポーツ文化センター<br>横浜ラポール<small>新横浜駅より徒歩約10分</small></div>
+<div class="audience"><div class="free-badge">参加無料</div><strong><span class="audience-label">対象</span>ダウン症のあるお子さんとご家族</strong><small>※成人のダウン症のある方・支援者の方もご参加いただけます。</small></div>
+</div>
+</div>
+<div class="ribbon"></div>
+</section>
+<div class="white">
+<nav class="wrap shortcut" aria-label="ショートカット">
+<a href="#program"><svg class="shortcut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 18V5l11-2v13M9 9l11-2"/><ellipse cx="6" cy="18" rx="3" ry="2.5"/><ellipse cx="17" cy="16" rx="3" ry="2.5"/></svg><span>心魂公演</span></a>
+<a href="#workshops"><svg class="shortcut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m14 4 6 6M5 19c-2 0-3 1-3 1s0-5 3-6a3 3 0 0 1 3 5c-1 1-2 0-3 0ZM8 14l8-11a2 2 0 0 1 3 3L9 17"/></svg><span>ワークショップ</span></a>
+<a href="#photos"><svg class="shortcut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m8 6 1.5-3h5L16 6h4a1 1 0 0 1 1 1v13H3V7a1 1 0 0 1 1-1Z"/><circle cx="12" cy="12.5" r="4"/></svg><span>写真募集</span></a>
+<a href="#story"><svg class="shortcut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 5a5 5 0 0 0-8 1 5 5 0 0 0-8-1c-3 4 0 8 8 14 8-6 11-10 8-14Z"/></svg><span>開催への想い</span></a>
+<a href="#access"><svg class="shortcut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 0 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>会場案内</span></a>
+<a href="#" data-donation="donation.html"><svg class="shortcut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14h4l3 3h4a2 2 0 0 1 0 4H9l-5-3M2 13v8h3M15 12c-5-3-6-5-4-7a3 3 0 0 1 4 0 3 3 0 0 1 4 0c2 2 1 4-4 7Z"/></svg><span>寄付・応援</span></a>
+</nav>
+</div>
+<section class="section white" id="about">
+<div class="wrap about">
+<div>
+<div class="section-head">
+<span class="eyebrow">ABOUT</span>
+<h2>みんなちがう。<br>だから、ワクワクする。</h2>
+</div>
+<div class="big-number" aria-hidden="true">3.21</div>
+</div>
+<div class="about-copy">
+<p>3月21日は「世界ダウン症の日」。</p>
+<p>WAKUWAKUフェスタは、ダウン症のある子どもたちとご家族が、音楽や舞台、ワークショップや交流を通して、自分らしく楽しめるイベントです。</p>
+<p>声を出しても、踊っても、じっとしていられなくても大丈夫。</p>
+<p><strong>楽しみ方は、一人ひとり違っていていい。</strong></p>
+<p>一人ひとりの「好き」や「やってみたい」を大切にしながら、本格的な舞台公演やさまざまな体験を楽しめる一日。</p>
+<p>心が動く瞬間や、新しい出会いが生まれる時間をお届けします。</p>
+</div>
+</div>
+</section>
+<section class="section white" id="three-wakuwaku">
+<div class="wrap">
+<div class="section-head">
+<span class="eyebrow">THREE WAKUWAKU</span>
+<h2>この日だけの、3つのWAKUWAKU！</h2>
+</div>
+<div class="cards">
+<article class="experience">
+<span class="main-program-badge">メインプログラム</span>
+<span class="num">01 / WAKUWAKU</span>
+<h3><span>こころ揺さぶる</span><wbr><span>劇場体験</span></h3>
+<p><span class="keep-word">劇団四季</span>・<span class="keep-word">宝塚歌劇団</span>出身者を中心とした<span class="keep-word">プロのパフォーマー</span>が届ける、本格的な歌とダンスの<span class="keep-word">舞台公演</span>。</p>
+<p>観るだけでなく、一緒に楽しめる<span class="keep-word">参加型ステージ</span>も！</p>
+<p>自分らしく楽しめる、特別な<span class="keep-word">劇場体験</span>です。</p>
+</article>
+<article class="experience">
+<span class="num">02 / WAKUWAKU</span>
+<h3><span>出会いが広がる、</span><wbr><span>つながる時間</span></h3>
+<p>成人した<span class="keep-word">ダウン症</span>のある先輩たちや、さまざまな活動をしている人たちとの出会い。</p>
+<p>お話を聞いたり、交流したり。親子で楽しめる<span class="keep-word">アート体験</span>や、<span class="keep-word">ハンドケア</span>などもできます。</p>
+</article>
+<article class="experience">
+<span class="num">03 / WAKUWAKU</span>
+<h3><span>みんなでつくる、</span><wbr><span>未来への夢</span></h3>
+<p>あなたの「好き」や「夢」を、写真と<span class="keep-word">メッセージ</span>に込めて。</p>
+<p>応募した写真が、<span class="keep-word">公演中</span>の<span class="keep-word">映像</span>に<span class="keep-word">登場</span>！ 会場での<span class="keep-word">写真展示</span>もあります。</p>
+<p>自分の「好き」や「夢」を見つめる、そんなきっかけにもなりますように。</p>
+</article>
+</div>
+</div>
+</section>
+<section class="section tint program" id="program">
+<div class="wrap">
+<div class="section-head">
+<span class="eyebrow">MAIN PROGRAM</span>
+<h2><span>心が動く瞬間に、</span><wbr><span>出会おう。</span></h2>
+</div>
+<div class="two-col">
+<figure class="photo" data-photo="stage" style="--ratio:4 / 3">
+<div class="photo-label"><span class="photo-mark" aria-hidden="true">＋</span><span>心魂プロジェクト公演</span><small>推奨 PC 4:3・スマホ3:2 ／ スクリーン演出と出演者、客席の見える舞台風景</small></div>
+</figure>
+<div class="program-copy">
+<h3>心魂プロジェクト公演</h3>
+<div class="program-intro">
+<p class="program-lead"><strong>病室も、病院の廊下も、体育館も。どこでも劇場になる！</strong></p>
+<p>心魂（こころだま）プロジェクトは、病気や障がいなど、さまざまな理由で劇場に行くことが難しい子どもたちやご家族のもとへ、本格的な舞台芸術を届けています。</p>
+<p>今回のWAKUWAKUフェスタでは、ダウン症のある子どもたちとご家族に向けた特別公演を開催します。</p>
+<p>音楽に合わせて体を動かしたり、思わず声が出たり、じっと舞台を見つめたり。</p>
+<p><strong>楽しみ方も、心の動き方も、一人ひとり違っていい。</strong></p>
+<p>周りを気にせず、自分らしく楽しめる場所で、本格的な舞台芸術に触れてみませんか。</p>
+</div>
+<div class="performance-card" aria-label="公演情報">
+<div class="performance-times">
+<div><span>開場</span><time datetime="2027-03-21T12:30:00+09:00">12:30</time></div>
+<div><span>開演</span><time datetime="2027-03-21T13:00:00+09:00">13:00</time></div>
+<div><span>終演予定</span><time datetime="2027-03-21T14:30:00+09:00">14:30</time></div>
+</div>
+<dl class="performance-details">
+<div class="performance-venue"><dt>会場</dt><dd>1階 ラポールシアター</dd></div>
+<div><dt>定員</dt><dd>150名</dd></div>
+<div><dt>参加費</dt><dd>無料</dd></div>
+</dl>
+<div class="performance-notice"><p>事前申込が必要です</p><p>※定員に達し次第、申込締切</p></div>
+</div>
+<div class="actions">
+<a class="btn blue" data-form="performance" aria-describedby="form-notice" href="#" target="_blank" rel="noopener noreferrer">心魂プロジェクト公演に申し込む<span aria-hidden="true">↗</span>
+</a>
+</div>
+<aside class="program-more" aria-labelledby="program-more-title">
+<img class="program-official-logo" src="images/cocorodama-logo.png" alt="心魂プロジェクト 公式ロゴ" width="2778" height="2778" loading="lazy" decoding="async">
+<div class="program-more-content">
+<h4 id="program-more-title">心魂プロジェクトの活動をもっと知る</h4>
+<div class="program-more-links">
+<a href="https://www.cocorodama.com/" target="_blank" rel="noopener noreferrer" aria-label="公式サイト（新しいタブで開く）">公式サイト<span aria-hidden="true">↗</span></a>
+<a href="https://www.facebook.com/cocorodama/" target="_blank" rel="noopener noreferrer" aria-label="公式Facebook（新しいタブで開く）">公式Facebook<span aria-hidden="true">↗</span></a>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<section class="section cream" id="workshops">
+<div class="wrap">
+<div class="section-head">
+<span class="eyebrow">WORKSHOP & COMMUNITY</span>
+<h2><span>出会って、話して、</span><wbr><span>つながろう。</span></h2>
+</div>
+<div class="workshop-intro">
+<p>午前中は、さまざまな人や活動に出会える交流＆ワークショップの時間。</p>
+<p>成人したダウン症のある先輩たちのお話を聞いたり、同じ想いを持つご家族と交流したり。</p>
+<p>親子で楽しめるアート体験や、ハンドケアなどもあります。</p>
+<p>気になるブースに立ち寄りながら、自分のペースで自由にお楽しみください。</p>
+</div>
+<div class="workshop-session" aria-label="交流＆ワークショップの開催情報">
+<p class="workshop-time"><strong>10:30〜12:30｜2階 ラポールボックス</strong></p>
+<p class="workshop-tags"><span>入退場自由</span><span>飲食OK</span><span>テーブル席あり</span></p>
+<p class="workshop-tables">飲食や休憩にご利用いただけるテーブル席もご用意しています。</p>
+<p class="workshop-note">※飲食物の販売はありません。</p>
+</div>
+<div class="workshop-grid">
+<article class="booth booth--partner">
+<figure class="photo" data-photo="bart" style="--ratio:1 / 1"><div class="photo-label"><span class="photo-mark" aria-hidden="true">＋</span><span>BART POCKET</span><small>推奨 1:1 ／ 緑豊かな屋外で、手をつないで過ごす家族</small></div></figure>
+<div class="booth-body"><p class="booth-kicker">バートんちにおいでよ（長野県）</p><h3>BART POCKET</h3>
+<p>バートんちは、長野県にある病児・障がい児とそのご家族の立ち寄りスポット。</p>
+<p>ホッとできる時間を一緒に過ごせたら嬉しいです。</p>
+<ul class="booth-links">
+<li><a href="https://www.bartpocket.com/" target="_blank" rel="noopener noreferrer" aria-label="BART POCKET 公式サイト">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>
+<span>公式サイト</span></a></li>
+</ul>
+</div>
+</article>
+<article class="booth booth--partner">
+<figure class="photo" data-photo="smile" style="--ratio:1 / 1"><div class="photo-label"><span class="photo-mark" aria-hidden="true">＋</span><span>smile.amuse</span><small>推奨 1:1 ／ 子どもが母親の頬に顔を寄せている、smile.amuseの紹介写真</small></div></figure>
+<div class="booth-body booth-smile-copy"><p class="booth-kicker">ダウン症児ママの運営団体</p><h3>smile.amuse</h3>
+<p>ダウン症の子供達の「働く」を一緒に考えませんか？</p>
+<p>ブースでは、フリマやママを癒すハンドケアを楽しみながら、先輩ママと気軽におしゃべりできます。ぜひ、遊びに来て下さい♪</p>
+<ul class="booth-links">
+<li><a href="https://www.instagram.com/smile.amuse?cplk=NTd1ZDQyNXNjNTFh" target="_blank" rel="noopener noreferrer" aria-label="smile.amuse Instagram">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor" stroke="none"/></svg>
+<span>Instagram</span></a></li>
+</ul>
+</div>
+</article>
+<article class="booth booth--partner">
+<figure class="photo" data-photo="surf" style="--ratio:1 / 1"><div class="photo-label"><span class="photo-mark" aria-hidden="true">＋</span><span>サーフセラピー うみがめくらぶ</span><small>推奨 1:1 ／ 海を背景に、SHOと書かれたサーフボードを持つShoくん</small></div></figure>
+<div class="booth-body"><h3><span>サーフセラピー</span> <wbr><span>うみがめくらぶ</span></h3>
+<p>パラサーファーとして大会で優勝、入賞しているShoくん。</p>
+<p>サーフセラピー「うみがめくらぶ」のお友達とブースで待っています♪サーフィンが心身に与える効果についてもお話します♪</p>
+<ul class="booth-links">
+<li><a href="https://www.surftherapyjapan.com/" target="_blank" rel="noopener noreferrer">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>
+<span>Surf Therapy Japan 公式サイト</span></a></li>
+<li><a href="https://www.instagram.com/surftherapy_japan/" target="_blank" rel="noopener noreferrer" aria-label="Surf Therapy Japan Instagram">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor" stroke="none"/></svg>
+<span>Surf Therapy Japan</span></a></li>
+<li><a href="https://www.instagram.com/sho.surfsurf/" target="_blank" rel="noopener noreferrer" aria-label="sho.surfsurf Instagram">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor" stroke="none"/></svg>
+<span>sho.surfsurf</span></a></li>
+</ul>
+</div>
+</article>
+<article class="booth">
+<figure class="photo" data-photo="art" style="--ratio:1 / 1"><div class="photo-label"><span class="photo-mark" aria-hidden="true">＋</span><span>アート（親子コラボ作品）</span><small>推奨 1:1 ／ 緑の葉を背景に、人物と犬の写真を組み合わせた親子コラボのゼンタングル作品</small></div></figure>
+<div class="booth-body"><p class="booth-kicker">心臓病と向き合う親子によるワークショップ</p><h3><span>アート</span><wbr><span>（親子コラボ作品）</span></h3>
+<p>「ゼンタングル」で親子コラボ作品をつくってみませんか？</p>
+<p>ゼンタングルは多様なスタイルやアイデアを表現できます。リラックス効果もあり。</p>
+</div>
+</article>
+<article class="booth">
+<figure class="photo" data-photo="dream" style="--ratio:1 / 1"><div class="photo-label"><span class="photo-mark" aria-hidden="true">＋</span><span>みんなの夢・情報コーナー</span><small>推奨 1:1 ／ 緑を背景に、並んで笑顔を見せる2人の先輩たち</small></div></figure>
+<div class="booth-body"><h3><span>みんなの夢・</span><wbr><span>情報コーナー</span></h3>
+<p>「みんなの夢」聞かせて💕</p>
+<p>成人したわたしたちと夢を話そう。ブースでは「みんなの夢」が紹介されます。情報交換の場にもなっています。素敵な活動のチラシなども置いてます。</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="section pink-tint" id="photos">
+<div class="wrap two-col">
+<div>
+<div class="section-head">
+<span class="eyebrow">YOUR PHOTO, YOUR DREAM</span>
+<h2>あなたの写真が、<br>公演の一部に！</h2>
+</div>
+<h3 class="photo-invite">「自分の好きなところ」と「あなたの夢」を、<span>みんなに届けませんか？</span></h3>
+<div class="photo-intro">
+<p>自分の好きなところ、これから叶えたい夢。</p>
+<p>あなたらしい写真とメッセージを、ぜひ届けてください。</p>
+<p>応募いただいた写真は、心魂プロジェクトの公演映像や、会場での写真展示などでご紹介します。</p>
+</div>
+<ul class="list photo-requirements">
+<li><strong>写真①：</strong><span>心魂プロジェクト公演の映像に使用する写真</span></li>
+<li><strong>写真②：</strong><span>会場での写真展示に使用する写真</span></li>
+<li><strong>メッセージ：</strong><span>「自分の好きなところ」「あなたの夢」（20文字以内）</span></li>
+</ul>
+<p class="photo-entry-note" id="photo-notice" data-fixed-copy>※写真・メッセージは、いずれか1点からでもご応募いただけます。</p>
+<div class="photo-qa">
+<p><strong>Q. 写真は、ダウン症のある本人だけが写っているものに限りますか？</strong></p>
+<p>いいえ。ダウン症のある方が写っていれば、お一人の写真でも、ご家族やお友だち・仲間と一緒の写真でもご応募いただけます。</p>
+</div>
+<p class="deadline"><span>応募締切</span><strong>2027年2月28日（日）</strong></p>
+<a class="btn blue" data-form="photo" aria-describedby="photo-notice" href="#" target="_blank" rel="noopener noreferrer">写真・メッセージを応募する<span aria-hidden="true">↗</span>
+</a>
+</div>
+<div class="photo-pair">
+<figure class="photo " data-photo="entry1" style="--ratio:4 / 3">
+<div class="photo-label">
+<span class="photo-mark" aria-hidden="true">＋</span>
+<span>公演映像用の写真</span>
+<small>推奨 4:5 ／ その人らしさが伝わる表情</small>
+</div>
+</figure>
+<figure class="photo " data-photo="entry2" style="--ratio:4 / 3">
+<div class="photo-label">
+<span class="photo-mark" aria-hidden="true">＋</span>
+<span>会場展示用の写真</span>
+<small>推奨 4:5 ／ 好きなことや夢を楽しむ姿</small>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section class="section white">
+<div class="wrap">
+<div class="section-head">
+<span class="eyebrow">TIME SCHEDULE</span>
+<h2>WAKUWAKUな一日の過ごし方</h2>
+</div>
+<ol class="timeline">
+<li>
+<time>10:30〜12:30</time>
+<div>
+<b>交流＆ワークショップ</b>
+<small>2階 ラポールボックス</small>
+</div>
+</li>
+<li>
+<time>12:30</time>
+<div>
+<b>心魂プロジェクト公演 開場</b>
+<small>1階 ラポールシアター</small>
+</div>
+</li>
+<li>
+<time>13:00〜14:30</time>
+<div>
+<b>心魂プロジェクト公演</b>
+<small>歌とダンスの舞台公演・参加型ステージ</small>
+</div>
+</li>
+<li>
+<time>15:00</time>
+<div>
+<b>イベント終了予定</b>
+</div>
+</li>
+</ol>
+</div>
+</section>
+<section class="section story" id="story">
+<div class="wrap">
+<div class="section-head">
+<span class="eyebrow">OUR STORY</span>
+<h2>私らしく、誇らしく。<br>未来は、私たちがつくる。</h2>
+</div>
+<div class="narrow">
+<p>「我が子に、もっといろいろな世界を見せてあげたい。」<br>「心が動くような体験を、たくさんさせてあげたい。」</p>
+<p>そんな願いがあっても、思うように叶えられないことがあります。</p>
+<p>音楽が大好き。踊ることも大好き。</p>
+<p>でも、じっと座っていることが難しかったり、声が出てしまったり、あちこち動き回ったり。</p>
+<p>劇場やイベントに連れて行きたくても、会場の環境やルールに合わせることが難しく、参加を諦めてしまう。</p>
+<p>私自身、ダウン症のある子どもを育てる母親として、そんな経験をしてきた一人です。</p>
+<p><strong>だからこそ、実現したかったことがあります。</strong></p>
+<p>それは、ダウン症のある子どもたちが、ありのままの自分で、心から楽しめる本格的な舞台公演です。</p>
+<p>周囲に気兼ねすることなく、その子らしい姿で音楽や踊りを楽しめる場所。</p>
+<p>そして、ただ自由に過ごせるだけではなく、心が揺さぶられるような、本物の舞台芸術に出会ってほしい。</p>
+<p>そんな願いから、今回のWAKUWAKUフェスタでは、ダウン症のある子どもたちとご家族に向けた心魂プロジェクト公演を、メインプログラムとして企画しました。</p>
+<p>劇団四季・宝塚歌劇団出身者を中心としたプロのパフォーマーたちが届ける、本格的な歌とダンス。音響や照明が生み出す劇場空間。</p>
+<p>その中で、心が動く体験に出会ってほしいと願っています。</p>
+<figure class="photo story-photo" data-photo="story1" style="--ratio:3 / 2"></figure>
+<p>以前、心魂プロジェクト公演を体験したご家族からは、思いがけないわが子の姿への驚きと喜びの声が届きました。</p>
+<p>音や暗い場所が苦手だった子が、最後まで公演を楽しんでいた。</p>
+<p>初めての場所に緊張していた子が、次第に目を輝かせていた。</p>
+<p>普段は人前に出ない子が、自ら前に出て踊り始めた。</p>
+<p><strong>一つの体験を通して、本人も周囲も、まだ知らなかった可能性に出会う。</strong></p>
+<p>その体験が本人の自信や、周囲の新しい気づきとなり、次の「やってみたい」につながっていく。</p>
+<p>もしかしたら、舞台で輝くプロのパフォーマーに憧れて、「自分もあんなふうになりたい！」と思う子がいるかもしれません。</p>
+<p>そんな未来も、最初から閉ざしたくありません。</p>
+<p><strong>体験が、表現を生み、気づきが、新しい選択肢をひらいていく。</strong></p>
+<p>今回のWAKUWAKUフェスタでも、そんなきっかけをつくりたいと思っています。</p>
+<figure class="photo story-photo story-photo-portrait" data-photo="story2" style="--ratio:1108 / 1477"></figure>
+<p>そして、もう一つ大切な願いがあります。</p>
+<p>それは、ダウン症のある子どもたちやご家族に、もっと自分自身を誇ってほしいということです。</p>
+<p>私たちは、知らず知らずのうちに、周りと比べたり、社会の「普通」や「当たり前」に合わせようとしたりしています。</p>
+<p>けれど、一人ひとり違っていて当たり前。</p>
+<p>得意なことも、苦手なこともある。<br>できることも、できないこともある。</p>
+<p>そのすべてを含めて、その人らしさです。それこそが宝物です。</p>
+<p>誰かと同じようにできなくても、自分自身を誇っていい。</p>
+<p><strong>ありのままの自分に、100点満点をつけていい。</strong></p>
+<p>そして、どの子にも、まだ誰も知らない才能や可能性があるはずです。</p>
+<p>その可能性を、今ある社会の枠組みだけで決めてしまいたくありません。</p>
+<p>これからAIやロボットなどの技術が発展し、社会は大きく変わっていくでしょう。</p>
+<p>そんな時代だからこそ、人が心で感じ、表現し、誰かと心を通わせることの豊かさや、挑戦したい気持ちを大切にしたいと思っています。</p>
+<p>一人ひとりの「好き」や「やってみたい」から、新しい生き方や選択肢が生まれていく。</p>
+<p>そして、自分らしく生きる姿が、いつか社会の「当たり前」を変えていくかもしれません。</p>
+<p>WAKUWAKUフェスタでは、心魂プロジェクト公演のほかにも、ワークショップや交流、写真やメッセージを通じて、一人ひとりが自分らしく参加できる機会をつくります。</p>
+<p>特別なことができなくてもいい。<br>何かを表現しなければいけないわけでもありません。</p>
+<p>ただそこにいて、楽しんで、誰かと出会う。</p>
+<p>そんな時間も、かけがえのない体験です。</p>
+<p>この日が、子どもたちにも、ご家族や支援者の皆さまにも、新しい発見と喜びに出会える一日になりますように。</p>
+<p>そして、帰るときには、少しだけ自分のことが誇らしくなり、これからの未来が楽しみになっていたら嬉しいです。</p>
+<p>世界ダウン症の日を広めよう in Yokohama 実行委員会</p>
+</div>
+<p class="statement">ありのままの自分に、<br>100点満点を。</p>
+</div>
+</section>
+<section class="section support">
+<div class="wrap">
+<div>
+<div class="section-head">
+<span class="eyebrow">SUPPORT US</span>
+<h2><span>子どもたちが、</span><span><span class="support-phrase">自分らしい未来を</span><wbr><span class="support-phrase">つくる。</span></span><span>その一歩を、一緒に。</span></h2>
+</div>
+</div>
+<div>
+<p>WAKUWAKUフェスタは、ダウン症のある子どもたちとご家族に、本格的な舞台芸術やさまざまな体験を無料で届けるイベントです。</p>
+<p>心が動く体験が、新しい「好き」や「やってみたい」に出会うきっかけになるかもしれません。</p>
+<p>子どもたちが自分らしい未来をひらいていく、その一歩となる体験を、皆さまと一緒に支えていけたら嬉しいです。</p>
+<div class="actions">
+<a class="btn yellow" href="#" data-donation="donation.html">寄付について詳しく見る<span aria-hidden="true">↗</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<section class="section white">
+<div class="wrap">
+<div class="section-head">
+<span class="eyebrow">FEEL AT HOME</span>
+<h2>あなたらしい楽しみ方で、大丈夫。</h2>
+</div>
+<p>WAKUWAKUフェスタでは、一人ひとりのペースや楽しみ方を大切にしています。</p>
+<div class="comfort-list">
+<div class="comfort-item">
+<span class="icon" aria-hidden="true">♫</span><span class="comfort-copy"><span>声を出しても、踊ってもOK。</span><span class="comfort-caption">表現は自由！</span></span></div>
+<div class="comfort-item">
+<span class="icon" aria-hidden="true">▱</span>午後の公演はマット席もご用意。</div>
+<div class="comfort-item">
+<span class="icon" aria-hidden="true">♿</span>車いす・ベビーカーでの参加もOK。</div>
+</div>
+<p>午前中のワークショップは、自由に入退場していただけます。</p>
+<p>午後の公演では、椅子に座るのが難しい方も過ごしやすいよう、マット席をご用意しています。</p>
+<p>車いすやベビーカーをご利用の方も、ご参加いただけます。</p>
+<p>初めての場所やイベントへの参加に不安がある方は、お気軽にお問い合わせください。</p>
+</div>
+</section>
+<section class="section cream" id="access">
+<div class="wrap">
+<div class="section-head">
+<span class="eyebrow">INFORMATION & ACCESS</span>
+<h2>イベント開催概要</h2>
+</div>
+<div class="overview">
+<dl class="data">
+<div>
+<dt>イベント名</dt>
+<dd>世界ダウン症の日 WAKUWAKUフェスタ 2027</dd>
+</div>
+<div>
+<dt>開催日時</dt>
+<dd>2027年3月21日（日）10:30〜15:00</dd>
+</div>
+<div>
+<dt>会場</dt>
+<dd>障害者スポーツ文化センター 横浜ラポール</dd>
+</div>
+<div>
+<dt>参加費</dt>
+<dd>無料</dd>
+</div>
+<div>
+<dt>午後公演</dt>
+<dd>事前申込制・定員150名</dd>
+</div>
+<div>
+<dt>主催</dt>
+<dd>世界ダウン症の日を広めよう in Yokohama 実行委員会</dd>
+</div>
+<div>
+<dt>協力</dt>
+<dd>NPO法人 心魂プロジェクト</dd>
+</div>
+<div>
+<dt>助成</dt>
+<dd>TOOTH FAIRY支援事業</dd>
+</div>
+<div>
+<dt>後援（申請中）</dt>
+<dd></dd>
+</div>
+<div>
+<dt>お問い合わせ</dt>
+<dd><a data-email href="mailto:wdsd.yokohama@gmail.com">wdsd.yokohama@gmail.com</a></dd>
+</div>
+</dl>
+<aside class="access-box">
+<span class="eyebrow">MEET US IN YOKOHAMA</span>
+<h3>横浜ラポール</h3>
+<p class="access-facility">障害者スポーツ文化センター 横浜ラポール</p>
+<p>〒222-0035<br>横浜市港北区鳥山町1752</p>
+<iframe class="access-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3247.8313636847033!2d139.60661381161296!3d35.50844787252938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018592b4fd683a7%3A0x3a2ce44710672f39!2z5qiq5rWc44Op44Od44O844Or!5e0!3m2!1sja!2sjp!4v1793378955694!5m2!1sja!2sjp" width="600" height="280" title="横浜ラポールのGoogleマップ" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<p class="access-walk">新横浜駅から徒歩約10分</p>
+<p>新横浜駅から無料送迎バスもあります。</p>
+<div class="access-links">
+<a class="btn outline" href="https://yrf.jp/rapport/yokohama/access" target="_blank" rel="noopener noreferrer">公式アクセス案内<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3 11 13M10 4H4v16h16v-6"/></svg></a>
+<a class="btn outline" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%A8%AA%E6%B5%9C%E3%83%A9%E3%83%9D%E3%83%BC%E3%83%AB%20%E6%A8%AA%E6%B5%9C%E5%B8%82%E6%B8%AF%E5%8C%97%E5%8C%BA%E9%B3%A5%E5%B1%B1%E7%94%BA1752" target="_blank" rel="noopener noreferrer">Googleマップで開く<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3 11 13M10 4H4v16h16v-6"/></svg></a>
+</div>
+</aside>
+</div>
+</div>
+</section>
+<section class="section white">
+<div class="wrap">
+<div class="section-head">
+<span class="eyebrow">FAQ</span>
+<h2>よくあるご質問</h2>
+</div>
+<div class="faq">
+<details>
+<summary>
+<span class="q">Q.</span>参加費はかかりますか？<span class="plus" aria-hidden="true">＋</span>
+</summary>
+<div class="answer">参加は無料です。</div>
+</details>
+<details>
+<summary>
+<span class="q">Q.</span>事前申込は必要ですか？<span class="plus" aria-hidden="true">＋</span>
+</summary>
+<div class="answer">午前中の交流・ワークショップは入退場自由です。午後の心魂プロジェクト公演は事前申込が必要です。</div>
+</details>
+<details>
+<summary>
+<span class="q">Q.</span>午前中だけ参加できますか？<span class="plus" aria-hidden="true">＋</span>
+</summary>
+<div class="answer">はい。午前のプログラムは自由にお楽しみいただけます。</div>
+</details>
+<details>
+<summary>
+<span class="q">Q.</span>会場で飲食できますか？<span class="plus" aria-hidden="true">＋</span>
+</summary>
+<div class="answer">
+<p>午前中のワークショップ会場「2階 ラポールボックス」では、飲食が可能です。飲食や休憩にご利用いただけるテーブル席もご用意しています。</p>
+<p>ただし、飲食物の販売はありませんので、必要な方はご持参ください。</p>
+<p>午後の公演会場「1階 ラポールシアター」内では飲食できません。飲食の際は、ホワイエなど、飲食が認められている場所をご利用ください。</p>
+</div>
+</details>
+<details>
+<summary>
+<span class="q">Q.</span>車いすやベビーカーでも参加できますか？<span class="plus" aria-hidden="true">＋</span>
+</summary>
+<div class="answer">はい。ご参加いただけます。ご不安な点があれば、事前にお問い合わせください。</div>
+</details>
+</div>
+</div>
+</section>
+<section class="section final">
+<div class="wrap">
+<div class="section-head">
+<span class="eyebrow">SEE YOU ON MARCH 21</span>
+<h2>未来は、<span class="final-heading-line">私たちがつくる。</span></h2>
+</div>
+<p>自分らしく楽しむこと。<br>新しい可能性に出会うこと。<br>誰かの「やってみたい」を応援すること。<br>その一つひとつが、未来をつくる力になる。</p>
+<p class="final-invitation"><strong>2027年3月21日。<wbr><span>一緒に、WAKUWAKUする一日を</span><wbr><span>楽しみませんか？</span></strong></p>
+<div class="actions hero-actions">
+<a class="btn blue primary-action" data-form="performance" aria-describedby="form-notice" href="#" target="_blank" rel="noopener noreferrer"><span>公演に申し込む</span><span aria-hidden="true">↗</span></a>
+<a class="btn pink" data-form="photo" aria-describedby="photo-notice" href="#" target="_blank" rel="noopener noreferrer"><span class="application-label"><span>写真・メッセージ</span><wbr><span>を応募する</span></span><span aria-hidden="true">↗</span></a>
+<a class="btn yellow" href="#" data-donation="donation.html"><span>寄付で応援する</span><span aria-hidden="true">↗</span></a>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<a class="logo" href="index.html">
+<small>世界ダウン症の日</small>
+<b>
+<i>WAKU</i><em>WAKU</em>フェスタ <span class="year">2027</span>
+</b>
+</a>
+<p style="margin-top:22px" data-setting="organizer">
+</p>
+</div>
+<div>
+<p>お問い合わせ<br>
+<a data-email href="mailto:wdsd.yokohama@gmail.com">wdsd.yokohama@gmail.com</a>
+</p>
+<a href="#" data-donation="donation.html" class="small" style="color:white">寄付で応援する ↗</a>
+</div>
+</div>
+<div class="copyright">© 2027 WAKUWAKU FESTA.　世界ダウン症の日を広めよう in Yokohama 実行委員会</div>
+</div>
+</footer>
+<div class="status" role="status" aria-live="polite" aria-atomic="true"></div>
+<a class="floating-donate" href="#" data-donation="donation.html">寄付で応援</a>
+<script>
+const settings=JSON.parse(document.getElementById('site-config').textContent);
+// ファーストビューのロゴ差し替えは冒頭の heroEmblem で管理します。
+const heroEmblem=document.querySelector('[data-hero-emblem]');
+if(heroEmblem){const emblem=settings.heroEmblem;if(emblem?.src){heroEmblem.src=emblem.src;heroEmblem.alt=emblem.alt||'世界ダウン症の日 横浜 記念エンブレム';heroEmblem.addEventListener('error',()=>heroEmblem.closest('.hero-emblem').hidden=true)}else{heroEmblem.closest('.hero-emblem').hidden=true}}
+function isWebUrl(value){try{return ['http:','https:'].includes(new URL(value).protocol)}catch{return false}}
+const status=document.querySelector('.status');let statusTimer;
+function announce(text){status.textContent=text;clearTimeout(statusTimer);statusTimer=setTimeout(()=>status.textContent='',6500)}
+document.querySelectorAll('[data-setting]').forEach(el=>el.textContent=settings[el.dataset.setting]||'');
+document.querySelectorAll('[data-email]').forEach(el=>{el.href='mailto:'+settings.contactEmail;if(el.textContent.includes('@'))el.textContent=settings.contactEmail});
+// donationPagePublished が true の場合だけ寄付ページへ移動します。
+document.querySelectorAll('[data-donation]').forEach(link=>{if(settings.donationPagePublished===true){link.href=link.dataset.donation}else{link.addEventListener('click',event=>{event.preventDefault();announce('寄付ページは現在準備中です。')})}});
+
+// 最終CTA・フッターの操作を隠さないよう、小型寄付ボタンを非表示にします。
+const floatingDonation=document.querySelector('.floating-donate');
+if(floatingDonation&&'IntersectionObserver' in window){
+  const donationEndSections=new Map();
+  const donationObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>donationEndSections.set(entry.target,entry.isIntersecting));
+    floatingDonation.hidden=[...donationEndSections.values()].some(Boolean);
+  });
+  document.querySelectorAll('.final,.footer').forEach(section=>donationObserver.observe(section));
+}
+// URLはHTTP(S)のみ許可。未設定時はページを離れず状況を案内します。
+document.querySelectorAll('[data-form]').forEach(el=>{const url=settings[el.dataset.form==='performance'?'performanceUrl':'photoFormUrl'];if(isWebUrl(url)){el.href=url;el.target='_blank';el.rel='noopener noreferrer'}else{el.addEventListener('click',event=>{event.preventDefault();announce(el.dataset.form==='performance'?'公演申込は準備中です。申込開始は2027年1月1日（金）を予定しています。':'写真・メッセージの応募フォームは準備中です。お問い合わせはページ下部のメールへお願いします。')})}});
+if(isWebUrl(settings.performanceUrl)){const note=document.getElementById('form-notice');if(note&&!note.hasAttribute('data-fixed-copy'))note.textContent='午後の公演は事前申込制・定員150名です。'}
+if(isWebUrl(settings.photoFormUrl)){const note=document.getElementById('photo-notice');if(note&&!note.hasAttribute('data-fixed-copy'))note.textContent='写真2枚とメッセージをご用意ください。'}
+// 写真が読み込めない場合も、用途が分かるプレースホルダーを維持します。
+document.querySelectorAll('[data-photo]').forEach(el=>{const p=settings.photos[el.dataset.photo];if(!p||(!p.src&&!p.mobileSrc))return;const picture=document.createElement('picture');if(p.mobileSrc){const source=document.createElement('source');source.media='(max-width:700px)';source.srcset=p.mobileSrc;picture.append(source)}const img=document.createElement('img');img.alt=p.alt||el.querySelector('.photo-label small').textContent.split('／').slice(1).join('／').trim();img.loading=el.dataset.photo.toLowerCase().includes('hero')?'eager':'lazy';img.decoding='async';img.addEventListener('load',()=>el.classList.add('has-image'));img.addEventListener('error',()=>el.classList.remove('has-image'));img.src=p.src||p.mobileSrc;el.style.setProperty('--pos',p.position||'50% 50%');el.style.setProperty('--mobile-pos',p.mobilePosition||p.position||'50% 50%');picture.append(img);el.append(picture)});
+
+const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav');
+function closeMenu(restore=false){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','メニューを開く');if(restore)toggle.focus()}
+toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'メニューを閉じる':'メニューを開く')});
+nav.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu()});document.addEventListener('click',e=>{if(!e.target.closest('.header'))closeMenu()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('open'))closeMenu(true)});document.querySelector('.header').addEventListener('focusout',()=>setTimeout(()=>{if(!document.activeElement.closest('.header'))closeMenu()},0));window.matchMedia('(min-width:1280px)').addEventListener('change',()=>closeMenu());
+// 銀行情報は全項目が設定されるまで、すべてのコピー操作を無効にします。
+const bankLabels={bank:'銀行名',branch:'支店名',type:'口座種別',number:'口座番号',holder:'口座名義'};const bankReady=Object.keys(bankLabels).every(k=>typeof settings.bank[k]==='string'&&settings.bank[k].trim()&&!/[【】]/.test(settings.bank[k]));
+async function copyText(text){try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text)}else{const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.left='-9999px';document.body.append(area);const focused=document.activeElement;area.select();const success=document.execCommand('copy');area.remove();if(focused)focused.focus();if(!success)throw Error()}announce('コピーしました。')}catch{announce('コピーできませんでした。振込先を選択してコピーしてください。')}}
+document.querySelectorAll('[data-bank]').forEach(el=>{if(bankReady)el.textContent=settings.bank[el.dataset.bank]});document.querySelectorAll('[data-copy]').forEach(el=>{el.disabled=!bankReady;el.addEventListener('click',()=>{if(!bankReady)return;copyText(el.dataset.copy==='all'?Object.keys(bankLabels).map(k=>bankLabels[k]+'：'+settings.bank[k]).join('\n'):settings.bank[el.dataset.copy])})});
+if(bankReady){const note=document.querySelector('.bank-notice');if(note)note.textContent='以下の振込先をご確認のうえ、お手続きをお願いいたします。';const pending=document.querySelector('.pending');if(pending)pending.hidden=true}
+document.querySelectorAll('[data-detail]').forEach(el=>{const value=settings.donationDetails[el.dataset.detail];if(value)el.textContent=value});
+</script>
+</body>
+</html>
