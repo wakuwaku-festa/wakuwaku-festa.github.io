@@ -770,8 +770,9 @@ details[open] .plus {
 }
 .footer-top {
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 35px;
+  gap: 2rem;
 }
 .footer .logo i,.footer .logo em {
   color: white;
@@ -1023,7 +1024,7 @@ details[open] .plus {
     display: block;
   }
   .footer-top>div+div {
-    margin-top: 30px;
+    margin-top: 1.75rem;
   }
   .final .actions {
     flex-direction: column;
@@ -2242,6 +2243,29 @@ main {padding-top:var(--header-height)}
 .final .final-invitation {max-width:42rem;margin-inline:auto;line-height:1.9}
 
 .final .final-invitation span {display:inline-block;max-width:100%}
+.footer-instagram {
+  flex: 0 0 auto;
+}
+.footer p[data-setting="organizer"] {
+  margin: .875rem 0 0;
+}
+.footer-instagram h2 {
+  margin: 0 0 .5rem;
+  color: #fff;
+  font-size: .875rem;
+  line-height: 1.5;
+}
+.footer-instagram a {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+}
+.footer-instagram img {
+  display: block;
+  width: 104px;
+  max-width: 100%;
+  height: auto;
+}
 </style>
 </head>
 <body>
@@ -2714,8 +2738,8 @@ main {padding-top:var(--header-height)}
 <dd>TOOTH FAIRY支援事業</dd>
 </div>
 <div>
-<dt>後援（申請中）</dt>
-<dd></dd>
+<dt>後援</dt>
+<dd>公益財団法人日本ダウン症協会</dd>
 </div>
 <div>
 <dt>お問い合わせ</dt>
@@ -2808,17 +2832,23 @@ main {padding-top:var(--header-height)}
 <i>WAKU</i><em>WAKU</em>フェスタ <span class="year">2027</span>
 </b>
 </a>
-<p style="margin-top:22px" data-setting="organizer">
+<p data-setting="organizer">
 </p>
 </div>
-<div>
+<div class="footer-contact">
 <p>お問い合わせ<br>
 <a data-email href="mailto:wdsd.yokohama@gmail.com">wdsd.yokohama@gmail.com</a>
 </p>
 <a href="#" data-donation="donation.html" class="small" style="color:white">寄付で応援する ↗</a>
 </div>
+<div class="footer-instagram">
+<h2>Instagram</h2>
+<a href="https://www.instagram.com/trysomy.21/?utm_source=ig_web_button_share_sheet">
+<img src="images/QR_Instagram.png" width="399" height="399" alt="WAKUWAKUフェスタ公式InstagramのQRコード" loading="lazy">
+</a>
 </div>
-<div class="copyright">© 2027 WAKUWAKU FESTA.　世界ダウン症の日を広めよう in Yokohama 実行委員会</div>
+</div>
+<div class="copyright">© 2027 WAKUWAKU FESTA.</div>
 </div>
 </footer>
 <div class="status" role="status" aria-live="polite" aria-atomic="true"></div>
